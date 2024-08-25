@@ -19,7 +19,7 @@ To read more about using these font, please visit the Next.js documentation:
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/
 "use client"
-
+ 
 import { useState } from "react"
 import Link from "next/link"
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
