@@ -4,7 +4,8 @@ import { useState } from "react"
 import Link from "next/link"
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import { Card, CardContent } from "@/components/ui/card"
-import {FloatingElementY, FloatingElementX} from '../components/FloatingElements'
+import { motion } from "framer-motion"
+import { fadeIn } from "@/components/FloatingElements"
 
 interface FootprintsIconProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
@@ -34,6 +35,9 @@ export const Component: React.FC = () => {
     { id: 1, name: "Product 1", price: 99.99, imageUrl: "/placeholder.svg" },
     { id: 2, name: "Product 2", price: 79.99, imageUrl: "/placeholder.svg" },
     { id: 3, name: "Product 3", price: 89.99, imageUrl: "/placeholder.svg" },
+    { id: 4, name: "Product 4", price: 94.22, imageUrl: "/placeholder.svg" },
+    { id: 5, name: "Product 5", price: 119.99, imageUrl: "/placeholder.svg" },
+    { id: 6, name: "Product 6", price: 69.99, imageUrl: "/placeholder.svg" }
   ];
   return (
     <div className="flex flex-col min-h-[100dvh]">
@@ -59,7 +63,7 @@ export const Component: React.FC = () => {
       </header>
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container grid gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-12">
+          <div className="container grid gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-12 -mt-[50px]">
             <img
               src="/placeholder.svg"
               width="550"
@@ -67,8 +71,18 @@ export const Component: React.FC = () => {
               alt="Hero Product"
               className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full"
             />
-            <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
+            <motion.div
+              variants={fadeIn("up", 0.1)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false, amount: 0.7 }}
+              className="flex flex-col justify-center space-y-4">
+              <motion.div
+              variants={fadeIn("left", 0.25)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false, amount: 0.7 }}
+              className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                     Step into Style with Our Premium Footwear
                   </h1>
@@ -76,7 +90,7 @@ export const Component: React.FC = () => {
                     Discover the perfect pair of shoes to elevate your look and comfort. Explore our collection of
                     high-quality men's, women's, and unisex footwear.
                   </p>
-                </div>
+              </motion.div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
                 <Link
                   href="#"
@@ -93,12 +107,10 @@ export const Component: React.FC = () => {
                   Learn More
                 </Link>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-          <FloatingElementY yOffset={50} scale={1.02}>
-          <div className="container grid gap-6 px-4 md:px-6 lg:grid-cols-3">
+        <section className="container grid gap-6 px-4 md:px-6 lg:grid-cols-3">
             <div>
               <Link href="#" className="group flex flex-col items-center gap-4" prefetch={false}>
                 <img
@@ -145,7 +157,6 @@ export const Component: React.FC = () => {
               </Link>
             </div>
           </div>
-          </FloatingElementY>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container space-y-12 px-4 md:px-6">
@@ -162,7 +173,7 @@ export const Component: React.FC = () => {
               className="w-full max-w-5xl"
               onLoadingChange={setLoading}
             >
-              <CarouselContent className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <CarouselContent className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-green-500">
                 {products.map((product) => (
                   <CarouselItem key={product.id}>
                     <Card>
@@ -213,37 +224,37 @@ export const Component: React.FC = () => {
 }
 
 
-  const FootprintsIcon: React.FC<FootprintsIconProps> = ({
-    className = "h-6 w-6",
-    width = 24,
-    height = 24,
-    xmlns = "http://www.w3.org/2000/svg",
-    viewBox = "0 0 24 24",
-    fill = "none",
-    stroke = "currentColor",
-    strokeWidth = 2,
-    strokeLinecap = "round",
-    strokeLinejoin = "round",
-    ...props
-  }) => {
-    return (
-      <svg
-        className={className}
-        xmlns="http://www.w3.org/2000/svg"
-        width={width}
-        height={height}
-        viewBox={viewBox}
-        fill={fill}
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-        strokeLinecap={strokeLinecap}
-        strokeLinejoin={strokeLinejoin}
-        {...props}
-      >
-        <path d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z" />
-        <path d="M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z" />
-        <path d="M16 17h4" />
-        <path d="M4 13h4" />
-      </svg>
-    );
-  };
+const FootprintsIcon: React.FC<FootprintsIconProps> = ({
+  className = "h-6 w-6",
+  width = 24,
+  height = 24,
+  xmlns = "http://www.w3.org/2000/svg",
+  viewBox = "0 0 24 24",
+  fill = "none",
+  stroke = "currentColor",
+  strokeWidth = 2,
+  strokeLinecap = "round",
+  strokeLinejoin = "round",
+  ...props
+}) => {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={height}
+      viewBox={viewBox}
+      fill={fill}
+      stroke={stroke}
+      strokeWidth={strokeWidth}
+      strokeLinecap={strokeLinecap}
+      strokeLinejoin={strokeLinejoin}
+      {...props}
+    >
+      <path d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z" />
+      <path d="M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z" />
+      <path d="M16 17h4" />
+      <path d="M4 13h4" />
+    </svg>
+  );
+};
