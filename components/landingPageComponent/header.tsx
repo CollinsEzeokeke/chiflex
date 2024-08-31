@@ -2,6 +2,7 @@
 
 import React from 'react'
 import FootprintsIcon from "@/components/footPrintsIcons"
+import ThemeSwitcher from "@/components/ThemeSwitcher"
 import Link from "next/link"
 
 const Header: React.FC = () => {
@@ -27,6 +28,7 @@ const Header: React.FC = () => {
             Sale
           </Link>
         </nav>
+        <ThemeSwitcher />
       </header>
         </>
     )
