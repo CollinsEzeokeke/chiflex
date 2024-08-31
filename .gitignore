@@ -38,3 +38,6 @@ next-env.d.ts
 
 pnpm-lock.yaml
 
+# component file
+/components/component.tsx
+
