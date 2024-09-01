@@ -45,7 +45,7 @@ const LandingPageBody: React.FC = () => {
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
                     Discover the perfect pair of shoes to elevate your look and comfort. Explore our collection of
-                     high-quality men's, women's, and unisex footwear.
+                     high-quality men&apos;s, women&apos;s, and unisex footwear.
                    </p>
                 </motion.div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
