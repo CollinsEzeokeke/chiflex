@@ -70,8 +70,8 @@ const LandingPageBody: React.FC = () => {
 
          {/* Section 2 */}
 
-         <section className="container grid gap-6 px-4 md:px-6 lg:grid-cols-3">
-             <div>
+         <section className="container grid gap-6 px-4 md:px-6 lg:grid-cols-3 bg-red-500">
+             <div className="bg-yellow">
                <Link href="#" className="group flex flex-col items-center gap-4" prefetch={false}>
                  <img
                    src="/placeholder.svg"
@@ -81,7 +81,7 @@ const LandingPageBody: React.FC = () => {
                    className="aspect-square overflow-hidden rounded-xl object-cover group-hover:scale-105 transition-transform"
                  />
                  <div className="text-center">
-                   <h3 className="text-xl font-bold">Men's Footwear</h3>
+                   <h3 className="text-xl font-bold">Men&apos;s Footwear</h3>
                    <p className="text-muted-foreground">Explore our collection</p>
                  </div>
                </Link>
@@ -96,7 +96,7 @@ const LandingPageBody: React.FC = () => {
                    className="aspect-square overflow-hidden rounded-xl object-cover group-hover:scale-105 transition-transform"
                 />
                  <div className="text-center">
-                   <h3 className="text-xl font-bold">Women's Footwear</h3>
+                   <h3 className="text-xl font-bold">Women&apos;s Footwear</h3>
                    <p className="text-muted-foreground">Discover the latest styles</p>
                  </div>
                </Link>
