@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import DarkModeLoader from "@/components/darkModeLoader";
-// import LightModeLoader from "@/components/lightModeLoader";
+import LightModeLoader from "@/components/lightModeLoader";
 
 export default function Loading() {
   const [mounted, setMounted] = useState(false);
@@ -22,7 +22,7 @@ export default function Loading() {
       {resolvedTheme === "dark" ? (
         <DarkModeLoader />
       ) : (
-        <div>I am meant to be white or in light mode</div>
+        <LightModeLoader />
       )}
     </div>
   );
