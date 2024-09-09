@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { motion, useTransform, useScroll } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { fadeIn } from "@/components/FloatingElements";
 import MotionImage from "@/components/motionedImage";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,10 +12,9 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-  type CarouselApi,
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay";
 
 interface Product {
   id: number;
@@ -34,36 +33,9 @@ const products: Product[] = [
 ];
 
 const LandingPageBody: React.FC = () => {
-  // Test for carousel
-
-  const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
-
-  React.useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-  }, [api]);
-
   const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
+    Autoplay({ delay: 3000, stopOnInteraction: true })
   );
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.2, 1, 0.2]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
   return (
     <>
       <main className="flex-1">
@@ -73,8 +45,7 @@ const LandingPageBody: React.FC = () => {
           variants={fadeIn("down", 0.1)}
           initial="show"
           whileInView="show"
-          style={{ scale }}
-          className="w-full py-12 md:py-24 lg:py-32 snap-y snap-mandatory overflow-y-hidden"
+          className="w-full py-12 md:py-24 lg:py-32 snap-y snap-mandatory overflow-y-hidden h-[93.4vh]"
         >
           <div className="container grid gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-12 -mt-[110px] h-[70vdh]">
             <MotionImage
@@ -141,26 +112,27 @@ const LandingPageBody: React.FC = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.7 }}
-          style={{ scale }}
-          className="flex flex-col px-4 md:px-6 lg:grid-cols-3 h-[100vh] -mt-[300px] overflow-x-hidden overflow-y-hidden"
+          className="flex flex-col px-4 md:px-6 lg:grid-cols-3 h-[100vh] mt-14 overflow-x-hidden overflow-y-hidden"
         >
-          {/* <div className="h-[50%] min-w-max flex flex-row justify-between pt-4 bg-red-500">
-            <div className="w-[30%] bg-blue-500 ">
-              <h3 className="text-3xl font-bold tracking-tighter capitalize">Step into your perfect pair</h3>
+          <div className="h-[30%] min-w-max flex flex-col justify-between pt-4 ">
+            <div className="w-full text-center ">
+              <h3 className="text-5xl font-bold tracking-tighter capitalize">
+                Step into your perfect pair
+              </h3>
             </div>
-            <div className="bg-yellow">
+            <div className=" w-3/6 h-3/4 text-center text-xl gap-4 order-1 self-center flex items-center">
               <p>
                 From sleek sneakers to elegant heels, cozy slippers to rugged
                 boots we've got every style to step up your shoe game!
               </p>
             </div>
-          </div> */}
+          </div>
           <motion.div
             variants={fadeIn("up", 0.2)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: false, amount: 0.7 }}
-            className="flex flex-row justify-between items-start text-center h-[50vdh] w-[95.5vw] -pt-[100px] absolute top-[310px]"
+            className="flex flex-row justify-between items-start text-center h-[50vdh] w-[95.5vw] -pt-[100px] absolute top-[250px]"
           >
             <motion.div
               variants={fadeIn("right", 0.5)}
@@ -243,11 +215,11 @@ const LandingPageBody: React.FC = () => {
           </motion.div>
         </motion.section>
 
-        {/* Section 3 */}
+        {/* section testing for section 3 */}
 
-        <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container space-y-12 px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+        <section className="w-full md:py-24 lg:py-32 overflow-y-hidden overflow-x-hidden h-screen flex justify-center">
+          <div className="container space-y-12 px-4 md:px-6 h-[80vh] -mt-[100px] flex items-center flex-col">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center h-[15vh]">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                   Featured Products
@@ -258,44 +230,27 @@ const LandingPageBody: React.FC = () => {
               </div>
             </div>
 
-            <Carousel setApi={setApi} className="w-full max-w-xs">
-              <CarouselContent>
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <CarouselItem key={index}>
-                    <Card>
-                      <CardContent className="flex aspect-square items-center justify-center p-6">
-                        <span className="text-4xl font-semibold">
-                          {index + 1}
-                        </span>
-                      </CardContent>
-                    </Card>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
-
-            {/* <Carousel
-              plugins={[plugin.current]}
-              onMouseEnter={plugin.current.stop}
-              onMouseLeave={plugin.current.reset}
-              opts={{ align: "start", loop: true }}
-              className="w-full max-w-5xl"
-            >
-              <CarouselContent>
-                {products.map((product) => (
-                  <CarouselItem key={product.id}>
-                    <Card>
-                      <img
-                        src={product.imageUrl}
-                        width="300"
-                        height="300"
-                        alt={product.name}
-                        className="aspect-square overflow-hidden rounded-t-xl object-cover"
-                      />
-                      <CardContent className="p-4 space-y-2">
-                        <h3 className="text-lg font-bold">{product.name}</h3>
+<div className=" w-[100%] flex justify-center h-full">
+            <Carousel
+          plugins={[plugin.current]}
+          className="w-[50vw] h-full justify-self-center"
+          onMouseEnter={plugin.current.stop}
+          onMouseLeave={plugin.current.reset}
+        >
+          <CarouselContent>
+            {products.map((product) => (
+              <CarouselItem key={product.id}>
+                <div className="p-1">
+                  <Card className="h-auto flex justify-center border-none] shadow-lg dark:shadow-[0px 5px 15px rgba(255, 255, 255, 0.2)]">
+                    <img
+                      src={product.imageUrl}
+                      width="400"
+                      height="300"
+                      alt={product.name}
+                      className="aspect-square overflow-hidden rounded-t-xl object-cover"
+                    />
+                    <CardContent className="flex flex-col aspect-square items-center justify-center p-6">
+                      <h3 className="text-lg font-bold">{product.name}</h3>
                         <p className="text-muted-foreground">
                           ${product.price.toFixed(2)}
                         </p>
@@ -306,16 +261,32 @@ const LandingPageBody: React.FC = () => {
                         >
                           View Product
                         </Link>
-                      </CardContent>
-                    </Card>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel> */}
+                    </CardContent>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="mr-[500px]"/>
+          <CarouselNext className="ml-10"/>
+        </Carousel>
+
+        </div>
           </div>
         </section>
+
+        {/* Footer */}
+        <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+         <p className="text-xs text-muted-foreground">&copy; 2024 Footwear Co. All rights reserved.</p>
+         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+           <Link href="#" className="text-xs hover:underline underline-offset-4" prefetch={false}>
+             Terms of Service
+           </Link>
+           <Link href="#" className="text-xs hover:underline underline-offset-4" prefetch={false}>
+             Privacy
+           </Link>
+         </nav>
+       </footer>
       </main>
     </>
   );
