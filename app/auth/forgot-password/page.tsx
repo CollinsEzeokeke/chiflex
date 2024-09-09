@@ -38,7 +38,7 @@ export default function ForgotPassword() {
       <Card className="w-full max-w-md shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] dark:shadow-[0_20px_50px_rgba(255,_255,_255,_0.2)] transition-shadow duration-300">
         <CardHeader>
           <CardTitle className="text-2xl font-bold">Check Your Email</CardTitle>
-          <CardDescription>We've sent a password reset link to your email.</CardDescription>
+          <CardDescription>We&apos;ve sent a password reset link to your email.</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-center text-green-500">

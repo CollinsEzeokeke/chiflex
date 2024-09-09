@@ -123,7 +123,7 @@ const LandingPageBody: React.FC = () => {
             <div className=" w-3/6 h-3/4 text-center text-xl gap-4 order-1 self-center flex items-center">
               <p>
                 From sleek sneakers to elegant heels, cozy slippers to rugged
-                boots we've got every style to step up your shoe game!
+                boots we&apos;ve got every style to step up your shoe game!
               </p>
             </div>
           </div>
