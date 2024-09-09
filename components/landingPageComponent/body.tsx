@@ -108,11 +108,11 @@ const LandingPageBody: React.FC = () => {
         {/* Section 2 */}
 
         <motion.section
-          variants={fadeIn("down", 0.2)}
+          variants={fadeIn("down", 0.1)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.7 }}
-          className="flex flex-col px-4 md:px-6 lg:grid-cols-3 h-[100vh] mt-14 overflow-x-hidden overflow-y-hidden"
+          className="flex flex-col px-4 md:px-6 lg:grid-cols-3 h-[100vh] -mt-13 overflow-x-hidden overflow-y-hidden"
         >
           <div className="h-[30%] min-w-max flex flex-col justify-between pt-4 ">
             <div className="w-full text-center ">
@@ -128,14 +128,14 @@ const LandingPageBody: React.FC = () => {
             </div>
           </div>
           <motion.div
-            variants={fadeIn("up", 0.2)}
+            variants={fadeIn("up", 0.1)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: false, amount: 0.7 }}
             className="flex flex-row justify-around items-start text-center h-[50vdh] w-full -pt-[100px] absolute top-[250px]"
           >
             <motion.div
-              variants={fadeIn("right", 0.5)}
+              variants={fadeIn("right", 0.1)}
               initial="hidden"
               whileInView="show"
               viewport={{ once: false, amount: 0.7 }}
@@ -161,7 +161,7 @@ const LandingPageBody: React.FC = () => {
               </Link>
             </motion.div>
             <motion.div
-              variants={fadeIn("right", 0.5)}
+              variants={fadeIn("right", 0.1)}
               initial="hidden"
               whileInView="show"
               viewport={{ once: false, amount: 0.7 }}
@@ -187,7 +187,7 @@ const LandingPageBody: React.FC = () => {
               </Link>
             </motion.div>
             <motion.div
-              variants={fadeIn("left", 0.5)}
+              variants={fadeIn("left", 0.1)}
               initial="hidden"
               whileInView="show"
               viewport={{ once: false, amount: 0.7 }}
@@ -276,7 +276,7 @@ const LandingPageBody: React.FC = () => {
         </section>
 
         {/* Footer */}
-        <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+        <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t ">
          <p className="text-xs text-muted-foreground">&copy; 2024 Footwear Co. All rights reserved.</p>
          <nav className="sm:ml-auto flex gap-4 sm:gap-6">
            <Link href="#" className="text-xs hover:underline underline-offset-4" prefetch={false}>

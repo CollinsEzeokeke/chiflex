@@ -18,9 +18,6 @@ export default function ForgotPassword() {
     e.preventDefault()
     setIsSubmitting(true)
     setError('')
-
-    // Here you would typically call your API to handle the password reset request
-    // For this example, we'll simulate an API call with a timeout
     setTimeout(() => {
       if (email.includes('@')) {
         setIsSubmitted(true)

@@ -15,7 +15,7 @@ const Header: React.FC = () => {
           <span className="sr-only">Footwear Co.</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
+          <Link href="/mens" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
             Men
           </Link>
           <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
