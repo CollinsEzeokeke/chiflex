@@ -10,7 +10,7 @@ const Header: React.FC = () => {
     return(
         <>
         <header className="px-4 lg:px-6 h-14 flex items-center">
-        <Link href="#" className="flex items-center justify-center" prefetch={false}>
+        <Link href="/" className="flex items-center justify-center" prefetch={false}>
           <FootprintsIcon />
           <span className="sr-only">Footwear Co.</span>
         </Link>

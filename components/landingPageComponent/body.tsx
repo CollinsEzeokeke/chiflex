@@ -38,7 +38,7 @@ const LandingPageBody: React.FC = () => {
   );
   return (
     <>
-      <main className="flex-1">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-_184">
         {/* Section 1 */}
 
         <motion.section
@@ -87,7 +87,7 @@ const LandingPageBody: React.FC = () => {
               </motion.div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
                 <Link
-                  href="#"
+                  href="/auth/login"
                   className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                   prefetch={false}
                 >
@@ -132,7 +132,7 @@ const LandingPageBody: React.FC = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: false, amount: 0.7 }}
-            className="flex flex-row justify-between items-start text-center h-[50vdh] w-[95.5vw] -pt-[100px] absolute top-[250px]"
+            className="flex flex-row justify-around items-start text-center h-[50vdh] w-full -pt-[100px] absolute top-[250px]"
           >
             <motion.div
               variants={fadeIn("right", 0.5)}
