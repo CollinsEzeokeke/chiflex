@@ -11,7 +11,7 @@ export default function MensPage() {
           <div className="space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">Men's Premium Footwear Collection</h1>
             <p className="text-xl text-gray-600">
-              Discover our exclusive range of men's shoes designed for style, comfort, and durability. From classic dress shoes to trendy sneakers, find your perfect pair.
+              Discover our exclusive range of men&apos;s shoes designed for style, comfort, and durability. From classic dress shoes to trendy sneakers, find your perfect pair.
             </p>
             <div className="space-x-4">
               <Link
