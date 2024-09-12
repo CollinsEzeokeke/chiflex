@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { Button } from "@/components/ui/button"
+import Image from 'next/image'
 
 const navItems = [
   {
@@ -144,7 +145,7 @@ const Header: React.FC = () => {
                       className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-64 bg-white shadow-lg rounded-md overflow-hidden z-10"
                     >
                       <div className="p-4">
-                        <img src={item.preview.image} alt={`${item.title} preview`} className="w-full h-32 object-cover rounded-md mb-2" />
+                        <Image src={item.preview.image} alt={`${item.title} preview`} className="w-full h-32 object-cover rounded-md mb-2" />
                         <p className="text-sm text-gray-600">{item.preview.content}</p>
                       </div>
                     </motion.div>

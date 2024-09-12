@@ -45,7 +45,7 @@ export default function WomensPage() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-6">Women's Footwear</h1>
+        <h1 className="text-3xl font-bold mb-6">Women&apos;s Footwear</h1>
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">Shop by Category</h2>
