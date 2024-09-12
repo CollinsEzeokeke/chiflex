@@ -34,14 +34,9 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "framer-motion": "^11.3.30",
-    "indigo.css": "link:@radix-ui/colors/indigo.css",
-    "mauve.css": "link:@radix-ui/colors/mauve.css",
     "next-themes": "^0.3.0",
     "postcss": "^8",
-    "purple.css": "link:@radix-ui/colors/purple.css",
-    "react-navigation-menu": "link:@types/@radix-ui/react-navigation-menu",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5",
-    "violet.css": "link:@radix-ui/colors/violet.css"
+    "typescript": "^5"
   }
 }
