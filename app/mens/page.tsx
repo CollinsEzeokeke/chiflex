@@ -9,14 +9,14 @@ export default function MensPage() {
       <main className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">Men's Premium Footwear Collection</h1>
-            <p className="text-xl text-gray-600">
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight">Men&apos;s Premium Footwear Collection</h1>
+            <p className="text-xl">
               Discover our exclusive range of men&apos;s shoes designed for style, comfort, and durability. From classic dress shoes to trendy sneakers, find your perfect pair.
             </p>
             <div className="space-x-4">
               <Link
                 href="/mens-collection"
-                className="inline-block bg-black text-white px-6 py-3 rounded-md font-medium"
+                className="inline-block bg-black text-white dark:border-white border px-6 py-3 rounded-md font-medium"
               >
                 Shop Now
               </Link>
@@ -25,7 +25,7 @@ export default function MensPage() {
                 className="inline-block bg-white text-black border border-black px-6 py-3 rounded-md font-medium"
               >
                 Style Guide
-              </Link>
+              </Link> 
             </div>
           </div>
           <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden">

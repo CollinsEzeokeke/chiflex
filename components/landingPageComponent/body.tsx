@@ -171,7 +171,7 @@ const LandingPageBody: React.FC = () => {
                 className="group flex flex-col items-center gap-4"
                 prefetch={false}
               >
-                <img
+                <Image
                   src="/placeholder.svg"
                   width="300"
                   height="300"
@@ -197,7 +197,7 @@ const LandingPageBody: React.FC = () => {
                 className="group flex flex-col items-center gap-4"
                 prefetch={false}
               >
-                <img
+                <Image
                   src="/placeholder.svg"
                   width="300"
                   height="300"
@@ -242,7 +242,7 @@ const LandingPageBody: React.FC = () => {
               <CarouselItem key={product.id}>
                 <div className="p-1">
                   <Card className="h-auto flex justify-center border-none] shadow-lg dark:shadow-[0px 5px 15px rgba(255, 255, 255, 0.2)]">
-                    <img
+                    <Image
                       src={product.imageUrl}
                       width="400"
                       height="300"
