@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Search, ShoppingCart, User } from "lucide-react"
-import HomeLink from "@/components/homeLink"
+// import HomeLink from "@/components/homeLink"
 // import Header from "@/components/landingPageComponent/header"
 
 export default function WomensPage() {

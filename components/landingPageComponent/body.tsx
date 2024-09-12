@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { fadeIn } from "@/components/FloatingElements";
 import MotionImage from "@/components/motionedImage";
 import { Card, CardContent } from "@/components/ui/card";
