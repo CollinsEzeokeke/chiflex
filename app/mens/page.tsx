@@ -32,8 +32,9 @@ export default function MensPage() {
             <Image
               src="/placeholder.svg"
               alt="Men's Footwear Collection"
-              layout="fill"
-              objectFit="cover"
+              width={500}  // Adjust this value as needed
+              height={384} // Adjust this value as needed
+              style={{ objectFit: 'cover' }}
             />
           </div>
         </div>
@@ -46,8 +47,9 @@ export default function MensPage() {
                   <Image
                     src="/placeholder.svg"
                     alt={category}
-                    layout="fill"
-                    objectFit="cover"
+                    width={500}  // Adjust this value as needed
+                    height={384} // Adjust this value as needed
+                    style={{ objectFit: 'cover' }}
                   />
                 </div>
                 <h3 className="text-xl font-semibold">{category}</h3>

@@ -24,7 +24,7 @@ interface Product {
 }
 
 const products: Product[] = [
-  { id: 1, name: "Product 1", price: 99.99, imageUrl: "/placeholder.svg" },
+  { id: 1, name: "Product 1", price: 99.99, imageUrl: "/public/images/shoe.webp" },
   { id: 2, name: "Product 2", price: 79.99, imageUrl: "/placeholder.svg" },
   { id: 3, name: "Product 3", price: 89.99, imageUrl: "/placeholder.svg" },
   { id: 4, name: "Product 4", price: 94.22, imageUrl: "/placeholder.svg" },
@@ -45,27 +45,28 @@ const LandingPageBody: React.FC = () => {
           variants={fadeIn("down", 0.1)}
           initial="show"
           whileInView="show"
-          className="w-full py-12 md:py-24 lg:py-32 snap-y snap-mandatory overflow-y-hidden h-[93.4vh]"
+          className="w-full py-12 md:py-24 lg:py-32 snap-y snap-mandatory overflow-y-hidden h-[93.4vh] portrait:flex-col landscape:flex-row lg:w-full md:flex md:justify-end md:flex-col"
         >
-          <div className="container grid gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-12 -mt-[110px] h-[70vdh]">
+          <div className="container grid gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-12 lg:h-[100vh] -mt-[110px] h-[70vdh] md:h-full md:flex">
+            <div className="max-w-full max-h-full  md:w-[100%] md:h-4/5 md:flex">
             <MotionImage
               variants={fadeIn("right", 0.2)}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: false, amount: 0.7 }}
+              viewport={{ once: true, amount: 0.7 }}
               src="/placeholder.svg"
               width="550"
               height="550"
               alt="Hero Product"
-              className="mx-auto aspect-square overflow-hidden rounded-xl object-cover shadow-xl dark:shadow-[0_4px_15px_rgba(255,255,255,0.2)] sm:w-full"
-            />
+              className="mx-auto aspect-square overflow-hidden rounded-xl object-cover shadow-xl dark:shadow-[0_4px_15px_rgba(255,255,255,0.2)] sm:w-full md:mt-14"
+            /></div>
 
             {/* Animation for the top border */}
             <motion.div
               variants={fadeIn("up", 0.5)}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: false, amount: 0.7 }}
+              viewport={{ once: true, amount: 0.7 }}
               className="flex flex-col justify-center space-y-4"
             >
               {/* Animation for it's text */}
@@ -73,10 +74,10 @@ const LandingPageBody: React.FC = () => {
                 variants={fadeIn("left", 0.1)}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: false, amount: 0.7 }}
-                className="flex flex-col gap-4 -mt-[100px]"
+                viewport={{ once: true, amount: 0.7 }}
+                className="flex flex-col gap-4 -mt-[100px] "
               >
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none md:text-6xl">
                   Step into Style with Our Premium Footwear
                 </h1>
                 <p className="max-w-[600px] text-muted-foreground md:text-xl">
@@ -111,8 +112,8 @@ const LandingPageBody: React.FC = () => {
           variants={fadeIn("down", 0.1)}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, amount: 0.7 }}
-          className="flex flex-col px-4 md:px-6 lg:grid-cols-3 h-[100vh] -mt-13 overflow-x-hidden overflow-y-hidden"
+          viewport={{ once: true, amount: 0.7 }}
+          className="flex flex-col px-4 md:px-6 lg:grid-cols-3 h-[100vh] -mt-13 overflow-x-hidden overflow-y-hidden md:relative md:-top-11 lg:mt-6"
         >
           <div className="h-[30%] min-w-max flex flex-col justify-between pt-4 ">
             <div className="w-full text-center ">
@@ -120,8 +121,8 @@ const LandingPageBody: React.FC = () => {
                 Step into your perfect pair
               </h3>
             </div>
-            <div className=" w-3/6 h-3/4 text-center text-xl gap-4 order-1 self-center flex items-center">
-              <p>
+            <div className=" w-3/6 h-3/4 text-center text-xl gap-4 order-1 self-center flex items-center md:h-full md:py-6 md:block">
+              <p className="py-1">
                 From sleek sneakers to elegant heels, cozy slippers to rugged
                 boots we&apos;ve got every style to step up your shoe game!
               </p>
@@ -131,14 +132,14 @@ const LandingPageBody: React.FC = () => {
             variants={fadeIn("up", 0.1)}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: false, amount: 0.7 }}
+            viewport={{ once: true, amount: 0.7 }}
             className="flex flex-row justify-around items-start text-center h-[50vdh] w-full -pt-[100px] absolute top-[250px]"
           >
             <motion.div
               variants={fadeIn("right", 0.1)}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: false, amount: 0.7 }}
+              viewport={{ once: true, amount: 0.7 }}
             >
               <Link
                 href="#"
@@ -164,7 +165,7 @@ const LandingPageBody: React.FC = () => {
               variants={fadeIn("right", 0.1)}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: false, amount: 0.7 }}
+              viewport={{ once: true, amount: 0.7 }}
             >
               <Link
                 href="#"
@@ -190,7 +191,7 @@ const LandingPageBody: React.FC = () => {
               variants={fadeIn("left", 0.1)}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: false, amount: 0.7 }}
+              viewport={{ once: true, amount: 0.7 }}
             >
               <Link
                 href="#"
@@ -217,39 +218,39 @@ const LandingPageBody: React.FC = () => {
 
         {/* section testing for section 3 */}
 
-        <section className="w-full md:py-24 lg:py-32 overflow-y-hidden overflow-x-hidden h-screen flex justify-center">
+        <section className="w-full md:py-24 lg:py-32 overflow-hidden h-screen flex justify-center md:-mt-[300px] lg:-mt-[50px] lg:h-[90vh]">
           <div className="container space-y-12 px-4 md:px-6 h-[80vh] -mt-[100px] flex items-center flex-col">
             <div className="flex flex-col items-center justify-center space-y-4 text-center h-[15vh]">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                   Featured Products
                 </h2>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                <p className="max-w-[900px] text-muted-foreground md:text-2xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Discover our most popular and best-selling footwear items.
                 </p>
               </div>
             </div>
 
-<div className=" w-[100%] flex justify-center h-full">
+<div className=" w-[100%] flex justify-center h-full ">
             <Carousel
           plugins={[plugin.current]}
-          className="w-[50vw] h-full justify-self-center"
+          className="w-[50vw] h-full justify-self-center  md:h-[60vh] md:w-[100%]"
           onMouseEnter={plugin.current.stop}
           onMouseLeave={plugin.current.reset}
         >
           <CarouselContent>
             {products.map((product) => (
               <CarouselItem key={product.id}>
-                <div className="p-1">
-                  <Card className="h-auto flex justify-center border-none] shadow-lg dark:shadow-[0px 5px 15px rgba(255, 255, 255, 0.2)]">
+                <div className="p-1 md:h-[100%] md:flex md:justify-center ">
+                  <Card className="h-auto flex justify-center border-none] shadow-lg dark:shadow-[0px 5px 15px rgba(255, 255, 255, 0.2)] md:h-full md:flex md:flex-col md:items-center lg:h-[65vh] lg:w-[80vw] lg:overflow-hidden">
                     <Image
                       src={product.imageUrl}
-                      width="400"
-                      height="300"
+                      width="1000"
+                      height="1000"
                       alt={product.name}
-                      className="aspect-square overflow-hidden rounded-t-xl object-cover"
+                      className="aspect-square overflow-hidden rounded-t-xl object-cover md:w-[80%] lg:h-full lg:w-full"
                     />
-                    <CardContent className="flex flex-col aspect-square items-center justify-center p-6">
+                    <CardContent className="flex flex-col aspect-square items-center justify-center p-6 md:w-[80%] md:absolute md:opacity-90">
                       <h3 className="text-lg font-bold">{product.name}</h3>
                         <p className="text-muted-foreground">
                           ${product.price.toFixed(2)}
@@ -267,8 +268,8 @@ const LandingPageBody: React.FC = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="mr-[500px]"/>
-          <CarouselNext className="ml-10"/>
+          <CarouselPrevious className="mr-[500px] md:hidden"/>
+          <CarouselNext className="ml-10 md:hidden"/>
         </Carousel>
 
         </div>
