@@ -113,7 +113,7 @@ const LandingPageBody: React.FC = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.7 }}
-          className="flex flex-col px-4 md:px-6 lg:grid-cols-3 h-[100vh] -mt-13 overflow-x-hidden overflow-y-hidden md:relative md:-top-11 lg:mt-6"
+          className="flex flex-col px-4 md:px-6 lg:grid-cols-3 h-[100vh] -mt-13 overflow-x-hidden overflow-y-hidden md:relative md:-top-11 lg:mt-[180px]"
         >
           <div className="h-[30%] min-w-max flex flex-col justify-between pt-4 ">
             <div className="w-full text-center ">
@@ -218,7 +218,7 @@ const LandingPageBody: React.FC = () => {
 
         {/* section testing for section 3 */}
 
-        <section className="w-full md:py-24 lg:py-32 overflow-hidden h-screen flex justify-center md:-mt-[300px] lg:-mt-[50px] lg:h-[90vh]">
+        <section className="w-full md:py-24 lg:py-32 overflow-hidden h-screen flex justify-center md:-mt-[300px] lg:h-[90vh] lg:mt-[100px]">
           <div className="container space-y-12 px-4 md:px-6 h-[80vh] -mt-[100px] flex items-center flex-col">
             <div className="flex flex-col items-center justify-center space-y-4 text-center h-[15vh]">
               <div className="space-y-2">
