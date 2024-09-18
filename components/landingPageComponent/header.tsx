@@ -61,6 +61,7 @@ const Header: React.FC = () => {
   const [clickedItem, setClickedItem] = useState<string | null>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const [isMobile, setIsMobile] = useState<boolean>(false)
   const router = useRouter()
 
   useEffect(() => {
@@ -109,9 +110,19 @@ const Header: React.FC = () => {
       }, 300)
     }
   }
+
+useEffect(() => {
+  const checkIfMobile = () =>{
+    setIsMobile(window.innerWidth <= 475)
+  };
+  checkIfMobile()
+  window.addEventListener('resize', checkIfMobile)
+  return () => window.removeEventListener('resize', checkIfMobile)
+}, [])
+
      return(
         <>
-        <header className="px-4 lg:px-6 h-14 flex items-center">
+        <header className="px-4 lg:px-6 h-14 flex items-center mobile:bg-yellow-500">
         <Link href="/" className="flex items-center justify-center" prefetch={false}>
           <FootprintsIcon />
           <span className="sr-only">Footwear Co.</span>

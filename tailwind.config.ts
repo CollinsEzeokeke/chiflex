@@ -9,7 +9,15 @@ const config = {
     './src/**/*.{ts,tsx}',
 	],
   prefix: "",
-  theme: {
+  theme: { 
+    screens: {
+    'mobile': {'max': '475px'},
+    'sm': '640px',
+    'md': '768px',
+    'lg': '1024px',
+    'xl': '1280px',
+    '2xl': '1536px',
+  },
     container: {
       center: true,
       padding: "2rem",
