@@ -114,15 +114,15 @@ const LandingPageBody: React.FC = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.7 }}
-          className="flex flex-col px-4 md:px-6 lg:grid-cols-3 h-[100vh] -mt-13 overflow-x-hidden overflow-y-hidden md:relative md:-top-11 lg:mt-[180px] mobile:w-[90vw] mobile:h-[200vh] mobile:px-0"
+          className="flex flex-col px-4 md:px-6 lg:grid-cols-3 h-[100vh] -mt-13 overflow-x-hidden overflow-y-hidden md:relative md:-top-11 lg:mt-[180px] mobile:w-[90vw] mobile:px-0 mobile:h-[200vh]"
         >
-          <div className="h-[30%] min-w-max flex flex-col justify-between pt-4 mobile:w-[90vw] mobile:flex mobile:justify-center mobile:items-center ">
-            <div className="w-full text-center mobile:w-[80vw] mobile:flex mobile:justify-center mobile:m-0 mobile:p-0">
+          <div className="h-[30%] min-w-max flex flex-col justify-between pt-4 mobile:w-[90vw] mobile:flex mobile:justify-center mobile:items-center">
+            <div className="w-full text-center mobile:w-[80vw] mobile:flex mobile:justify-center">
               <h3 className="text-5xl font-bold tracking-tighter capitalize mobile:text-2xl">
                 Step into your perfect pair
               </h3>
             </div>
-            <div className=" w-3/6 h-3/4 text-center text-xl gap-4 order-1 self-center flex items-center md:h-full md:py-6 md:block mobile:w-[80vw] mobile:items-start mobile:pt-2">
+            <div className=" w-3/6 h-3/4 text-center text-xl gap-4 order-1 self-center flex items-center md:h-full md:py-6 md:block mobile:w-[80vw] mobile:items-start pt-2">
               <p className="py-1">
                 From sleek sneakers to elegant heels, cozy slippers to rugged
                 boots we&apos;ve got every style to step up your shoe game!
@@ -134,7 +134,7 @@ const LandingPageBody: React.FC = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.7 }}
-            className="flex flex-row justify-around items-start text-center h-[50vdh] w-full -pt-[100px] absolute top-[250px] mobile:flex mobile:flex-col mobile:justify-between mobile:items-center mobile:h-[165vh] mobile:mt-10"
+            className="flex flex-row justify-around items-start text-center h-[50vdh] w-full -pt-[100px] absolute top-[250px] mobile:flex mobile:flex-col mobile:items-center"
           >
             <motion.div
               variants={fadeIn("right", 0.1)}
