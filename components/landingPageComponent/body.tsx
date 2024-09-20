@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
+import { FloatingCartButton } from "../footPrintsIconsFloatingCard";
 
 interface Product {
   id: number;
@@ -45,10 +46,10 @@ const LandingPageBody: React.FC = () => {
           variants={fadeIn("down", 0.1)}
           initial="show"
           whileInView="show"
-          className="w-full py-12 md:py-24 lg:py-32 snap-y snap-mandatory overflow-y-hidden h-[93.4vh] portrait:flex-col landscape:flex-row lg:w-full md:flex md:justify-end md:flex-col"
+          className="w-full py-12 md:py-24 lg:py-32 snap-y snap-mandatory overflow-y-hidden h-[93.4vh] portrait:flex-col landscape:flex-row lg:w-full md:flex md:justify-end md:flex-col mobile:w-[90vw] mobile:flex"
         >
-          <div className="container grid gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-12 lg:h-[100vh] -mt-[110px] h-[70vdh] md:h-full md:flex">
-            <div className="max-w-full max-h-full  md:w-[100%] md:h-4/5 md:flex">
+          <div className="container grid gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-12 lg:h-[100vh] -mt-[110px] h-[70vdh] md:h-full md:flex mobile:-mt-5 mobile:h-full mobile:flex mobile:flex-col">
+            <div className="max-w-full max-h-full md:w-[100%] md:h-4/5 md:flex mobile:mb-3.5">
             <MotionImage
               variants={fadeIn("right", 0.2)}
               initial="hidden"
@@ -67,7 +68,7 @@ const LandingPageBody: React.FC = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.7 }}
-              className="flex flex-col justify-center space-y-4"
+              className="flex flex-col justify-center space-y-4 mobile:h-full mobile:relative mobile:top-12"
             >
               {/* Animation for it's text */}
               <motion.div
@@ -113,15 +114,15 @@ const LandingPageBody: React.FC = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.7 }}
-          className="flex flex-col px-4 md:px-6 lg:grid-cols-3 h-[100vh] -mt-13 overflow-x-hidden overflow-y-hidden md:relative md:-top-11 lg:mt-[180px]"
+          className="flex flex-col px-4 md:px-6 lg:grid-cols-3 h-[100vh] -mt-13 overflow-x-hidden overflow-y-hidden md:relative md:-top-11 lg:mt-[180px] mobile:w-[90vw] mobile:h-[200vh] mobile:px-0"
         >
-          <div className="h-[30%] min-w-max flex flex-col justify-between pt-4 ">
-            <div className="w-full text-center ">
-              <h3 className="text-5xl font-bold tracking-tighter capitalize">
+          <div className="h-[30%] min-w-max flex flex-col justify-between pt-4 mobile:w-[90vw] mobile:flex mobile:justify-center mobile:items-center ">
+            <div className="w-full text-center mobile:w-[80vw] mobile:flex mobile:justify-center mobile:m-0 mobile:p-0">
+              <h3 className="text-5xl font-bold tracking-tighter capitalize mobile:text-2xl">
                 Step into your perfect pair
               </h3>
             </div>
-            <div className=" w-3/6 h-3/4 text-center text-xl gap-4 order-1 self-center flex items-center md:h-full md:py-6 md:block">
+            <div className=" w-3/6 h-3/4 text-center text-xl gap-4 order-1 self-center flex items-center md:h-full md:py-6 md:block mobile:w-[80vw] mobile:items-start mobile:pt-2">
               <p className="py-1">
                 From sleek sneakers to elegant heels, cozy slippers to rugged
                 boots we&apos;ve got every style to step up your shoe game!
@@ -133,7 +134,7 @@ const LandingPageBody: React.FC = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.7 }}
-            className="flex flex-row justify-around items-start text-center h-[50vdh] w-full -pt-[100px] absolute top-[250px]"
+            className="flex flex-row justify-around items-start text-center h-[50vdh] w-full -pt-[100px] absolute top-[250px] mobile:flex mobile:flex-col mobile:justify-between mobile:items-center mobile:h-[165vh] mobile:mt-10"
           >
             <motion.div
               variants={fadeIn("right", 0.1)}
@@ -218,7 +219,7 @@ const LandingPageBody: React.FC = () => {
 
         {/* section testing for section 3 */}
 
-        <section className="w-full md:py-24 lg:py-32 overflow-hidden h-screen flex justify-center md:-mt-[300px] lg:h-[90vh] lg:mt-[100px]">
+        <section className="w-full md:py-24 lg:py-32 overflow-hidden h-screen flex justify-center md:-mt-[300px] lg:h-[90vh] lg:mt-[100px] mobile:w-[90vw]">
           <div className="container space-y-12 px-4 md:px-6 h-[80vh] -mt-[100px] flex items-center flex-col">
             <div className="flex flex-col items-center justify-center space-y-4 text-center h-[15vh]">
               <div className="space-y-2">
@@ -275,6 +276,10 @@ const LandingPageBody: React.FC = () => {
         </div>
           </div>
         </section>
+
+        {/* Floating Icon */}
+
+        <FloatingCartButton />
 
         {/* Footer */}
         <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t ">

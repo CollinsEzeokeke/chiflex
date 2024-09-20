@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-import FootprintsIcon from '@/components/footPrintsIcons'
+import FootprintsIcon from '@/components/footPrintsIconsFloatingCard'
 import Link from "next/link"
 
 interface HomeLinkProps {
