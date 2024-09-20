@@ -331,8 +331,8 @@ const LandingPageBody: React.FC = () => {
           <CarouselContent>
             {products.map((product) => (
               <CarouselItem key={product.id}>
-                <div className="p-1 md:h-[100%] md:flex md:justify-center">
-                  <Card className="h-auto flex justify-center border-none] shadow-lg dark:shadow-[0px 5px 15px rgba(255, 255, 255, 0.2)] md:h-full md:flex md:flex-col md:items-center lg:h-[65vh] lg:w-[80vw] lg:overflow-hidden mobile:h-[60vh]">
+                <div className="p-1 md:h-[100%] md:flex md:justify-center mobile:h-[100%] mobile:flex mobile:justify-center">
+                  <Card className="h-auto flex justify-center border-none] shadow-lg dark:shadow-[0px 5px 15px rgba(255, 255, 255, 0.2)] md:h-full md:flex md:flex-col md:items-center lg:h-[65vh] lg:w-[80vw] lg:overflow-hidden mobile:h-[60vh] mobile:flex mobile:flex-col mobile:items-center ">
                     <Image
                       src={product.imageUrl}
                       width="1000"
@@ -340,7 +340,7 @@ const LandingPageBody: React.FC = () => {
                       alt={product.name}
                       className="aspect-square overflow-hidden rounded-t-xl object-cover md:w-[80%] lg:h-full lg:w-full mobile:w-[80vw]"
                     />
-                    <CardContent className="flex flex-col aspect-square items-center justify-center p-6 md:w-[80%] md:absolute md:opacity-90 mobile:absolute">
+                    <CardContent className="flex flex-col aspect-square items-center justify-center p-6 md:w-[80%] md:absolute md:opacity-90 mobile:absolute mobile:opacity-90">
                       <h3 className="text-lg font-bold">{product.name}</h3>
                         <p className="text-muted-foreground">
                           ${product.price.toFixed(2)}
