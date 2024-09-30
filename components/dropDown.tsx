@@ -66,13 +66,13 @@ export function DropDownMenu() {
             <DropdownMenuSubTrigger>Mens</DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                <DropdownMenuItem>Sneakers</DropdownMenuItem>
-                <DropdownMenuItem>Dress Shoes</DropdownMenuItem>
-                <DropdownMenuItem>Boots</DropdownMenuItem>
-                <DropdownMenuItem>Sandals</DropdownMenuItem>
+                <DropdownMenuItem><Link href="/public/mens/sneaker">Sneakers</Link></DropdownMenuItem>
+                <DropdownMenuItem><Link href="/public/mens/dressShoes">Dress Shoes</Link></DropdownMenuItem>
+                <DropdownMenuItem><Link href="/public/mens/boots">Boots</Link></DropdownMenuItem>
+                <DropdownMenuItem><Link href="/public/mens/sandals">Sandals</Link></DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <Link href="/mens">More...</Link>
+                  <Link href="/public/mens">More...</Link>
                 </DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
@@ -82,13 +82,13 @@ export function DropDownMenu() {
             <DropdownMenuSubTrigger>Womens</DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                <DropdownMenuItem>Heels</DropdownMenuItem>
-                <DropdownMenuItem>Flats</DropdownMenuItem>
-                <DropdownMenuItem>Boots</DropdownMenuItem>
-                <DropdownMenuItem>Sneakers</DropdownMenuItem>
+                <DropdownMenuItem><Link href="/public/womens/heels">Heels</Link></DropdownMenuItem>
+                <DropdownMenuItem><Link href="/public/womens/flats">Flats</Link></DropdownMenuItem>
+                <DropdownMenuItem><Link href="/public/womens/boots">Boots</Link></DropdownMenuItem>
+                <DropdownMenuItem><Link href="/public/mens/sneaker">Sneakers</Link></DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <Link href="/womens">More...</Link>
+                  <Link href="/public/womens">More...</Link>
                 </DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
