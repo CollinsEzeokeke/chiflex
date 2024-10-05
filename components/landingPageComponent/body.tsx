@@ -25,12 +25,12 @@ interface Product {
 }
 
 const products: Product[] = [
-  { id: 1, name: "Product 1", price: 99.99, imageUrl: "/public/images/shoe.webp" },
-  { id: 2, name: "Product 2", price: 79.99, imageUrl: "/placeholder.svg" },
-  { id: 3, name: "Product 3", price: 89.99, imageUrl: "/placeholder.svg" },
-  { id: 4, name: "Product 4", price: 94.22, imageUrl: "/placeholder.svg" },
-  { id: 5, name: "Product 5", price: 119.99, imageUrl: "/placeholder.svg" },
-  { id: 6, name: "Product 6", price: 69.99, imageUrl: "/placeholder.svg" },
+  { id: 1, name: "Louis Vutton", price: 99.99, imageUrl: "/images/shoe.webp" },
+  { id: 2, name: "Nike", price: 79.99, imageUrl: "/images/carouselOne.jpg" },
+  { id: 3, name: "Product 3", price: 89.99, imageUrl: "/images/carouselTwo.jpg" },
+  { id: 4, name: "Product 4", price: 94.22, imageUrl: "/images/carouselThree.jpg" },
+  { id: 5, name: "Product 5", price: 119.99, imageUrl: "/images/carouselFour.jpg" },
+  { id: 6, name: "Product 6", price: 69.99, imageUrl: "/images/carouselFive.jpg" },
 ];
 
 const LandingPageBody: React.FC = () => {
@@ -55,7 +55,7 @@ const LandingPageBody: React.FC = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.7 }}
-              src="/placeholder.svg"
+              src="/images/frontOne.png"
               width="550"
               height="550"
               alt="Hero Product"
@@ -149,7 +149,7 @@ const LandingPageBody: React.FC = () => {
                 prefetch={false}
               >
                 <Image
-                  src="/placeholder.svg"
+                  src="/images/mens.jpg"
                   width="300"
                   height="300"
                   alt="Men's Footwear"
@@ -175,7 +175,7 @@ const LandingPageBody: React.FC = () => {
                 prefetch={false}
               >
                 <Image
-                  src="/placeholder.svg"
+                  src="/images/womens.jpg"
                   width="300"
                   height="300"
                   alt="Women's Footwear"
@@ -201,7 +201,7 @@ const LandingPageBody: React.FC = () => {
                 prefetch={false}
               >
                 <Image
-                  src="/placeholder.svg"
+                  src="/images/unisex.jpg"
                   width="300"
                   height="300"
                   alt="Unisex Footwear"
@@ -237,7 +237,7 @@ const LandingPageBody: React.FC = () => {
                 prefetch={false}
               >
                 <Image
-                  src="/placeholder.svg"
+                  src="/images/carouselOne.jpg"
                   width="300"
                   height="300"
                   alt="Men's Footwear"
@@ -263,7 +263,7 @@ const LandingPageBody: React.FC = () => {
                 prefetch={false}
               >
                 <Image
-                  src="/placeholder.svg"
+                  src="/images/carouselOne.jpg"
                   width="300"
                   height="300"
                   alt="Women's Footwear"
@@ -289,7 +289,7 @@ const LandingPageBody: React.FC = () => {
                 prefetch={false}
               >
                 <Image
-                  src="/placeholder.svg"
+                  src="/images/carouselOne.jpg"
                   width="300"
                   height="300"
                   alt="Unisex Footwear"
@@ -313,7 +313,7 @@ const LandingPageBody: React.FC = () => {
             <div className="flex flex-col items-center justify-center space-y-4 text-center h-[15vh]">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Featured Products
+                  Featured Brands
                 </h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-2xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Discover our most popular and best-selling footwear items.
@@ -332,17 +332,17 @@ const LandingPageBody: React.FC = () => {
             {products.map((product) => (
               <CarouselItem key={product.id}>
                 <div className="p-1 md:h-[100%] md:flex md:justify-center mobile:h-[100%] mobile:flex mobile:justify-center">
-                  <Card className="h-auto flex justify-center border-none] shadow-lg dark:shadow-[0px 5px 15px rgba(255, 255, 255, 0.2)] md:h-full md:flex md:flex-col md:items-center lg:h-[65vh] lg:w-[80vw] lg:overflow-hidden mobile:h-[60vh] mobile:flex mobile:flex-col mobile:items-center ">
+                  <Card className="h-auto flex justify-center border-none] shadow-lg dark:shadow-[0px 5px 15px rgba(255, 255, 255, 0.2)] md:h-full md:flex md:flex-col md:items-center lg:h-[65vh] lg:w-[80vw] lg:overflow-hidden mobile:h-[60vh] mobile:flex mobile:flex-col mobile:items-center transition-transform duration-300 ease-in-out hover:scale-110">
                     <Image
                       src={product.imageUrl}
                       width="1000"
                       height="1000"
                       alt={product.name}
-                      className="aspect-square overflow-hidden rounded-t-xl object-cover md:w-[80%] lg:h-full lg:w-full mobile:w-[80vw]"
+                      className="aspect-square overflow-hidden rounded-t-xl object-cover md:w-[80%] lg:h-full lg:w-full mobile:w-[80vw] "
                     />
                     <CardContent className="flex flex-col aspect-square items-center justify-center p-6 md:w-[80%] md:absolute md:opacity-90 mobile:absolute mobile:opacity-90">
-                      <h3 className="text-lg font-bold">{product.name}</h3>
-                        <p className="text-muted-foreground">
+                      <h3 className="text-lg font-bold text-white">{product.name}</h3>
+                        <p className="text-white">
                           ${product.price.toFixed(2)}
                         </p>
                         <Link
