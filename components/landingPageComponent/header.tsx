@@ -16,7 +16,7 @@ import { DropDownMenu } from "../dropDown";
 const navItems = [
   {
     title: "Men",
-    href: "/mens",
+    href: "/general/mens",
     preview: {
       image: "/placeholder.svg",
       content:
@@ -31,7 +31,7 @@ const navItems = [
   },
   {
     title: "Women",
-    href: "/womens",
+    href: "/general/womens",
     preview: {
       image: "/placeholder.svg",
       content:
@@ -240,7 +240,10 @@ const Header: React.FC = () => {
               ))}
             </ul>
           </nav>
+          <div>
           <ThemeSwitcher />
+
+          </div>
         </header>
       )}
     </>

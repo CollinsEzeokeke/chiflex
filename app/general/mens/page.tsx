@@ -25,16 +25,14 @@ export default function MensPage() {
                 className="inline-block bg-white text-black border border-black px-6 py-3 rounded-md font-medium"
               >
                 Style Guide
-              </Link> 
+              </Link>
             </div>
-          </div>
-          <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden">
+          </div><div className="relative h-96 w-full bg-gray-100 rounded-lg overflow-hidden">
             <Image
               src="/images/menPage.jpg"
               alt="Men's Footwear Collection"
-              width= '500'  
-              height= '384' 
-                  className="object-cover"
+              fill
+              className="object-cover"
             />
           </div>
         </div>
@@ -47,8 +45,8 @@ export default function MensPage() {
                   <Image
                     src="/placeholder.svg"
                     alt={category}
-                    width= '500'  
-                    height= '384' 
+                    width='500'
+                    height='384'
                     style={{ objectFit: 'cover' }}
                   />
                 </div>
