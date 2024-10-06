@@ -27,10 +27,10 @@ interface Product {
 const products: Product[] = [
   { id: 1, name: "Louis Vutton", price: 99.99, imageUrl: "/images/shoe.webp" },
   { id: 2, name: "Nike", price: 79.99, imageUrl: "/images/carouselOne.jpg" },
-  { id: 3, name: "Product 3", price: 89.99, imageUrl: "/images/carouselTwo.jpg" },
-  { id: 4, name: "Product 4", price: 94.22, imageUrl: "/images/carouselThree.jpg" },
-  { id: 5, name: "Product 5", price: 119.99, imageUrl: "/images/carouselFour.jpg" },
-  { id: 6, name: "Product 6", price: 69.99, imageUrl: "/images/carouselFive.jpg" },
+  { id: 3, name: "Leather", price: 89.99, imageUrl: "/images/carouselTwo.jpg" },
+  { id: 4, name: "Sports", price: 94.22, imageUrl: "/images/carouselThree.jpg" },
+  { id: 5, name: "Vintage", price: 119.99, imageUrl: "/images/carouselFour.jpg" },
+  { id: 6, name: "Cavani", price: 69.99, imageUrl: "/images/carouselFive.jpg" },
 ];
 
 const LandingPageBody: React.FC = () => {

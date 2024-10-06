@@ -30,11 +30,11 @@ export default function MensPage() {
           </div>
           <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden">
             <Image
-              src="/placeholder.svg"
+              src="/images/menPage.jpg"
               alt="Men's Footwear Collection"
-              width={500}  // Adjust this value as needed
-              height={384} // Adjust this value as needed
-              style={{ objectFit: 'cover' }}
+              width= '500'  
+              height= '384' 
+                  className="object-cover"
             />
           </div>
         </div>
@@ -47,8 +47,8 @@ export default function MensPage() {
                   <Image
                     src="/placeholder.svg"
                     alt={category}
-                    width={500}  // Adjust this value as needed
-                    height={384} // Adjust this value as needed
+                    width= '500'  
+                    height= '384' 
                     style={{ objectFit: 'cover' }}
                   />
                 </div>
