@@ -16,6 +16,7 @@ import {
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
 import { FloatingCartButton } from "../footPrintsIconsFloatingCard";
+import Footer from "../footer";
 
 interface Product {
   id: number;
@@ -338,7 +339,7 @@ const LandingPageBody: React.FC = () => {
                       width="1000"
                       height="1000"
                       alt={product.name}
-                      className="aspect-square overflow-hidden rounded-t-xl object-cover md:w-[80%] lg:h-full lg:w-full mobile:w-[80vw] "
+                      className="aspect-square overflow-hidden rounded-t-xl object-cover md:w-[80%] lg:h-full lg:w-full mobile:w-[80vw]"
                     />
                     <CardContent className="flex flex-col aspect-square items-center justify-center p-6 md:w-[80%] md:absolute md:opacity-90 mobile:absolute mobile:opacity-90">
                       <h3 className="text-lg font-bold text-white">{product.name}</h3>
@@ -371,17 +372,8 @@ const LandingPageBody: React.FC = () => {
         <FloatingCartButton />
 
         {/* Footer */}
-        <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t ">
-         <p className="text-xs text-muted-foreground">&copy; 2024 Footwear Co. All rights reserved.</p>
-         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-           <Link href="#" className="text-xs hover:underline underline-offset-4" prefetch={false}>
-             Terms of Service
-           </Link>
-           <Link href="#" className="text-xs hover:underline underline-offset-4" prefetch={false}>
-             Privacy
-           </Link>
-         </nav>
-       </footer>
+
+        <Footer/>
       </main>
     </>
   );

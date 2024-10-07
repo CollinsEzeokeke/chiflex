@@ -46,7 +46,7 @@ const navItems = [
   },
   {
     title: "Unisex",
-    href: "/unisex",
+    href: "/general/unisex",
     preview: {
       image: "/placeholder.svg",
       content:
@@ -240,9 +240,9 @@ const Header: React.FC = () => {
               ))}
             </ul>
           </nav>
-          <div>
-          <ThemeSwitcher />
-          <User />
+          <div className="flex text-sm justify-between items-center w-[5%]">
+          <ThemeSwitcher/>
+          <User className="text-lg"/>
           </div>
         </header>
       )}
