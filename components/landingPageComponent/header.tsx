@@ -7,7 +7,7 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence, px } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SearchPopUp from "@/components/searchPopUp"
 import Image from "next/image";
@@ -242,7 +242,7 @@ const Header: React.FC = () => {
           </nav>
           <div>
           <ThemeSwitcher />
-
+          <User />
           </div>
         </header>
       )}

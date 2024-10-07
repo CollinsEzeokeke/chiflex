@@ -135,7 +135,7 @@ const LandingPageBody: React.FC = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.7 }}
-            className="flex flex-row justify-around items-start text-center h-[50vh] w-full -pt-[100px] absolute top-[250px] mobile:pt-0 mobile:flex-col mobile:justify-center mobile:items-center mobile:-top-[150px] mobile: mobile:hidden"
+            className="flex flex-row justify-around items-start text-center h-[50vh] w-full -pt-[100px] absolute top-[250px] mobile:pt-0 mobile:flex-col mobile:justify-center mobile:items-center mobile:-top-[150px] mobile:hidden"
           >
             <motion.div
               variants={fadeIn("right", 0.1)}
@@ -217,7 +217,7 @@ const LandingPageBody: React.FC = () => {
             </motion.div>
           </motion.div>
         </motion.section>
-
+{/* Mobile display for mobile devices */}
         <motion.div
             variants={fadeIn("up", 0.1)}
             initial="hidden"
@@ -237,7 +237,7 @@ const LandingPageBody: React.FC = () => {
                 prefetch={false}
               >
                 <Image
-                  src="/images/carouselOne.jpg"
+                  src="/images/mens.jpg"
                   width="300"
                   height="300"
                   alt="Men's Footwear"
@@ -263,7 +263,7 @@ const LandingPageBody: React.FC = () => {
                 prefetch={false}
               >
                 <Image
-                  src="/images/carouselOne.jpg"
+                  src="/images/womens.jpg"
                   width="300"
                   height="300"
                   alt="Women's Footwear"
@@ -289,7 +289,7 @@ const LandingPageBody: React.FC = () => {
                 prefetch={false}
               >
                 <Image
-                  src="/images/carouselOne.jpg"
+                  src="/images/unisex.jpg"
                   width="300"
                   height="300"
                   alt="Unisex Footwear"
