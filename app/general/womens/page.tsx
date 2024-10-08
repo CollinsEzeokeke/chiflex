@@ -88,6 +88,19 @@ export default function WomensPage() {
         <WomensDataDisplay/>
       </section>
 
+      <section id="heels">
+<p>heels</p>
+      </section>
+      <section id="flats">
+<p>flats</p>
+      </section>
+      <section id="boots">
+<p>boots</p>
+      </section>
+      <section id="sneakers">
+<p>sneakers</p>
+      </section>
+
       <Footer/>
     </div>
   );

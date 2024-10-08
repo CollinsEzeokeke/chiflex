@@ -23,10 +23,10 @@ const navItems = [
         "Discover our exclusive range of men&apos;s shoes designed for style, comfort, and durability. From classic dress shoes to trendy sneakers, find your perfect pair.",
     },
     sections: [
-      { title: "Sneakers", href: "/men/sneakers" },
-      { title: "Dress Shoes", href: "/men/dress-shoes" },
-      { title: "Boots", href: "/men/boots" },
-      { title: "Sandals", href: "/men/sandals" },
+      { title: "Sneakers", href: "/general/mens/#sneakers" },
+      { title: "Dress Shoes", href: "/general/mens/#dress-shoes" },
+      { title: "Boots", href: "/general/mens/#boots" },
+      { title: "Sandals", href: "/general/men/#sandals" },
     ],
   },
   {
@@ -38,10 +38,10 @@ const navItems = [
         "Explore our exquisite range of women&apos;s shoes designed for elegance, comfort, and versatility. From stunning heels to chic flats, find your perfect pair to elevate any outfit.",
     },
     sections: [
-      { title: "Heels", href: "/women/heels" },
-      { title: "Flats", href: "/women/flats" },
-      { title: "Boots", href: "/women/boots" },
-      { title: "Sneakers", href: "/women/sneakers" },
+      { title: "Heels", href: "/general/womens/#heels" },
+      { title: "Flats", href: "/general/womens/#flats" },
+      { title: "Boots", href: "/general/womens/#boots" },
+      { title: "Sneakers", href: "/general/womens/#sneakers" },
     ],
   },
   {
@@ -53,10 +53,10 @@ const navItems = [
         "Discover our inclusive range of unisex shoes designed for versatility, comfort, and style. From trendy sneakers to comfortable slip-ons, find the perfect pair for any occasion.",
     },
     sections: [
-      { title: "Sneakers", href: "/unisex/sneakers" },
-      { title: "Sandals", href: "/unisex/sandals" },
-      { title: "Slip-ons", href: "/unisex/slip-ons" },
-      { title: "Athletic", href: "/unisex/athletic" },
+      { title: "Sneakers", href: "/general/unisex/#sneakers" },
+      { title: "Sandals", href: "/general/unisex/#sandals" },
+      { title: "Slip-ons", href: "/general/unisex/#slip-ons" },
+      { title: "Athletic", href: "/general/unisex/#athletic" },
     ],
   },
 ];
@@ -134,9 +134,10 @@ const Header: React.FC = () => {
             <span className="sr-only">Footwear Co.</span>
           </Link>
 
-          <SearchPopUp />
-
+          <div className="flex text-sm justify-between items-center w-[5%]">
+          <User className="text-lg text-red-500"/>
           <DropDownMenu />
+          </div>
         </header>
       ) : (
         <header className="px-4 lg:px-6 h-14 flex items-center mobile:hidden">
