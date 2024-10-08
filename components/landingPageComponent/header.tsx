@@ -18,9 +18,9 @@ const navItems = [
     title: "Men",
     href: "/general/mens",
     preview: {
-      image: "/placeholder.svg",
+      image: "/images/menPage.jpg",
       content:
-        "Discover our latest collection of men's footwear, from casual sneakers to formal dress shoes.",
+        "Discover our exclusive range of men&apos;s shoes designed for style, comfort, and durability. From classic dress shoes to trendy sneakers, find your perfect pair.",
     },
     sections: [
       { title: "Sneakers", href: "/men/sneakers" },
@@ -33,9 +33,9 @@ const navItems = [
     title: "Women",
     href: "/general/womens",
     preview: {
-      image: "/placeholder.svg",
+      image: "/images/womenPage.jpg",
       content:
-        "Explore trendy and comfortable women's shoes for every occasion, from heels to flats.",
+        "Explore our exquisite range of women&apos;s shoes designed for elegance, comfort, and versatility. From stunning heels to chic flats, find your perfect pair to elevate any outfit.",
     },
     sections: [
       { title: "Heels", href: "/women/heels" },
@@ -48,9 +48,9 @@ const navItems = [
     title: "Unisex",
     href: "/general/unisex",
     preview: {
-      image: "/placeholder.svg",
+      image: "/images/unisexPage.jpg",
       content:
-        "Check out our versatile unisex footwear options, perfect for any style and preference.",
+        "Discover our inclusive range of unisex shoes designed for versatility, comfort, and style. From trendy sneakers to comfortable slip-ons, find the perfect pair for any occasion.",
     },
     sections: [
       { title: "Sneakers", href: "/unisex/sneakers" },
@@ -181,6 +181,8 @@ const Header: React.FC = () => {
                             <Image
                               src={item.preview.image}
                               alt={`${item.title} preview`}
+                              width={200}
+                              height={200}
                               className="w-full h-32 object-cover rounded-md mb-2"
                             />
                             <p className="text-sm text-gray-600">

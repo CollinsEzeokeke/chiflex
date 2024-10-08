@@ -1,9 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/landingPageComponent/header";
-import UsersPage from "@/components/mensSearch";
-import { Search } from "lucide-react";
-import Separator from "@/components/separator";
+import UsersPage from "@/components/mensDataDisplay";
 import Footer from "@/components/footer";
 
 type Categories = {
@@ -85,22 +83,6 @@ export default function MensPage() {
           </div>
         </div>
       </main>
-
-      {/* separator */}
-      <Separator/>
-
-      {/* Shopping Sections */}
-
-      {/* search header */}
-            <div className="w-full h-20 flex items-center justify-center">
-              <h3 className="text-xl font-bold">You&apos;re just a prompt away from your dream shoe</h3>
-              <button className="relative left-4">
-                <Search/>
-              </button>
-            </div>
-
-            <Separator/>
-
       <section className="mb-20">
 <UsersPage/>
       </section>
