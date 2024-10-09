@@ -10,7 +10,6 @@ type Categories = {
 };
 
 export default function MensPage() {
-
   const categories: Categories[] = [
     { name: "Dress Shoes", image: "/images/dressShoes.jpg" },
     { name: "Sneakers", image: "/images/sneakers.jpg" },
@@ -84,10 +83,10 @@ export default function MensPage() {
         </div>
       </main>
       <section className="mb-20">
-<UsersPage/>
+        <UsersPage />
       </section>
 
-      <Footer/>
+      <Footer />
     </div>
   );
 }

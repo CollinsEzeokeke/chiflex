@@ -29,8 +29,18 @@ const products: Product[] = [
   { id: 1, name: "Louis Vutton", price: 99.99, imageUrl: "/images/shoe.webp" },
   { id: 2, name: "Nike", price: 79.99, imageUrl: "/images/carouselOne.jpg" },
   { id: 3, name: "Leather", price: 89.99, imageUrl: "/images/carouselTwo.jpg" },
-  { id: 4, name: "Sports", price: 94.22, imageUrl: "/images/carouselThree.jpg" },
-  { id: 5, name: "Vintage", price: 119.99, imageUrl: "/images/carouselFour.jpg" },
+  {
+    id: 4,
+    name: "Sports",
+    price: 94.22,
+    imageUrl: "/images/carouselThree.jpg",
+  },
+  {
+    id: 5,
+    name: "Vintage",
+    price: 119.99,
+    imageUrl: "/images/carouselFour.jpg",
+  },
   { id: 6, name: "Cavani", price: 69.99, imageUrl: "/images/carouselFive.jpg" },
 ];
 
@@ -51,17 +61,18 @@ const LandingPageBody: React.FC = () => {
         >
           <div className="container grid gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-12 lg:h-[100vh] -mt-[110px] h-[70vdh] md:h-full md:flex mobile:-mt-5 mobile:h-full mobile:flex mobile:flex-col">
             <div className="max-w-full max-h-full md:w-[100%] md:h-4/5 md:flex mobile:mb-3.5">
-            <MotionImage
-              variants={fadeIn("right", 0.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.7 }}
-              src="/images/frontOne.png"
-              width="550"
-              height="550"
-              alt="Hero Product"
-              className="mx-auto aspect-square overflow-hidden rounded-xl object-cover shadow-xl dark:shadow-[0_4px_15px_rgba(255,255,255,0.2)] sm:w-full md:mt-14"
-            /></div>
+              <MotionImage
+                variants={fadeIn("right", 0.2)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.7 }}
+                src="/images/frontOne.png"
+                width="550"
+                height="550"
+                alt="Hero Product"
+                className="mx-auto aspect-square overflow-hidden rounded-xl object-cover shadow-xl dark:shadow-[0_4px_15px_rgba(255,255,255,0.2)] sm:w-full md:mt-14"
+              />
+            </div>
 
             {/* Animation for the top border */}
             <motion.div
@@ -218,94 +229,91 @@ const LandingPageBody: React.FC = () => {
             </motion.div>
           </motion.div>
         </motion.section>
-{/* Mobile display for mobile devices */}
+        {/* Mobile display for mobile devices */}
         <motion.div
-            variants={fadeIn("up", 0.1)}
+          variants={fadeIn("up", 0.1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.7 }}
+          className="items-start text-center h-[50vh] w-full -pt-[100px] hidden top-[250px] mobile:pt-0 mobile:flex-col mobile:justify-center mobile:items-center mobile:-top-[150px] mobile:flex mobile:relative"
+        >
+          <motion.div
+            variants={fadeIn("right", 0.1)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.7 }}
-            className="items-start text-center h-[50vh] w-full -pt-[100px] hidden top-[250px] mobile:pt-0 mobile:flex-col mobile:justify-center mobile:items-center mobile:-top-[150px] mobile:flex mobile:relative"
           >
-            <motion.div
-              variants={fadeIn("right", 0.1)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.7 }}
+            <Link
+              href="#"
+              className="group flex flex-col items-center gap-4"
+              prefetch={false}
             >
-              <Link
-                href="#"
-                className="group flex flex-col items-center gap-4"
-                prefetch={false}
-              >
-                <Image
-                  src="/images/mens.jpg"
-                  width="300"
-                  height="300"
-                  alt="Men's Footwear"
-                  className="aspect-square overflow-hidden rounded-xl object-cover group-hover:scale-105 transition-transform"
-                />
-                <div className="text-center">
-                  <h3 className="text-xl font-bold">Men&apos;s Footwear</h3>
-                  <p className="text-muted-foreground">
-                    Explore our collection
-                  </p>
-                </div>
-              </Link>
-            </motion.div>
-            <motion.div
-              variants={fadeIn("right", 0.1)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.7 }}
-            >
-              <Link
-                href="#"
-                className="group flex flex-col items-center gap-4"
-                prefetch={false}
-              >
-                <Image
-                  src="/images/womens.jpg"
-                  width="300"
-                  height="300"
-                  alt="Women's Footwear"
-                  className="aspect-square overflow-hidden rounded-xl object-cover group-hover:scale-105 transition-transform"
-                />
-                <div className="text-center">
-                  <h3 className="text-xl font-bold">Women&apos;s Footwear</h3>
-                  <p className="text-muted-foreground">
-                    Discover the latest styles
-                  </p>
-                </div>
-              </Link>
-            </motion.div>
-            <motion.div
-              variants={fadeIn("left", 0.1)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.7 }}
-            >
-              <Link
-                href="#"
-                className="group flex flex-col items-center gap-4"
-                prefetch={false}
-              >
-                <Image
-                  src="/images/unisex.jpg"
-                  width="300"
-                  height="300"
-                  alt="Unisex Footwear"
-                  className="aspect-square overflow-hidden rounded-xl object-cover group-hover:scale-105 transition-transform"
-                />
-                <div className="text-center">
-                  <h3 className="text-xl font-bold">Unisex Footwear</h3>
-                  <p className="text-muted-foreground">
-                    Versatile options for all
-                  </p>
-                </div>
-              </Link>
-            </motion.div>
+              <Image
+                src="/images/mens.jpg"
+                width="300"
+                height="300"
+                alt="Men's Footwear"
+                className="aspect-square overflow-hidden rounded-xl object-cover group-hover:scale-105 transition-transform"
+              />
+              <div className="text-center">
+                <h3 className="text-xl font-bold">Men&apos;s Footwear</h3>
+                <p className="text-muted-foreground">Explore our collection</p>
+              </div>
+            </Link>
           </motion.div>
-        
+          <motion.div
+            variants={fadeIn("right", 0.1)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.7 }}
+          >
+            <Link
+              href="#"
+              className="group flex flex-col items-center gap-4"
+              prefetch={false}
+            >
+              <Image
+                src="/images/womens.jpg"
+                width="300"
+                height="300"
+                alt="Women's Footwear"
+                className="aspect-square overflow-hidden rounded-xl object-cover group-hover:scale-105 transition-transform"
+              />
+              <div className="text-center">
+                <h3 className="text-xl font-bold">Women&apos;s Footwear</h3>
+                <p className="text-muted-foreground">
+                  Discover the latest styles
+                </p>
+              </div>
+            </Link>
+          </motion.div>
+          <motion.div
+            variants={fadeIn("left", 0.1)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.7 }}
+          >
+            <Link
+              href="#"
+              className="group flex flex-col items-center gap-4"
+              prefetch={false}
+            >
+              <Image
+                src="/images/unisex.jpg"
+                width="300"
+                height="300"
+                alt="Unisex Footwear"
+                className="aspect-square overflow-hidden rounded-xl object-cover group-hover:scale-105 transition-transform"
+              />
+              <div className="text-center">
+                <h3 className="text-xl font-bold">Unisex Footwear</h3>
+                <p className="text-muted-foreground">
+                  Versatile options for all
+                </p>
+              </div>
+            </Link>
+          </motion.div>
+        </motion.div>
 
         {/* section testing for section 3 */}
 
@@ -322,48 +330,49 @@ const LandingPageBody: React.FC = () => {
               </div>
             </div>
 
-<div className=" w-[100%] flex justify-center h-full ">
-            <Carousel
-          plugins={[plugin.current]}
-          className="w-[50vw] h-full justify-self-center md:h-[60vh] md:w-[100%] mobile:w-full"
-          onMouseEnter={plugin.current.stop}
-          onMouseLeave={plugin.current.reset}
-        >
-          <CarouselContent>
-            {products.map((product) => (
-              <CarouselItem key={product.id}>
-                <div className="p-1 md:h-[100%] md:flex md:justify-center mobile:h-[100%] mobile:flex mobile:justify-center">
-                  <Card className="h-auto flex justify-center border-none] shadow-lg dark:shadow-[0px 5px 15px rgba(255, 255, 255, 0.2)] md:h-full md:flex md:flex-col md:items-center lg:h-[65vh] lg:w-[80vw] lg:overflow-hidden mobile:h-[60vh] mobile:flex mobile:flex-col mobile:items-center transition-transform duration-300 ease-in-out hover:scale-110">
-                    <Image
-                      src={product.imageUrl}
-                      width="1000"
-                      height="1000"
-                      alt={product.name}
-                      className="aspect-square overflow-hidden rounded-t-xl object-cover md:w-[80%] lg:h-full lg:w-full mobile:w-[80vw]"
-                    />
-                    <CardContent className="flex flex-col aspect-square items-center justify-center p-6 md:w-[80%] md:absolute md:opacity-90 mobile:absolute mobile:opacity-90">
-                      <h3 className="text-lg font-bold text-white">{product.name}</h3>
-                        <p className="text-white">
-                          ${product.price.toFixed(2)}
-                        </p>
-                        <Link
-                          href="#"
-                          className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                          prefetch={false}
-                        >
-                          View Product
-                        </Link>
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="mr-[500px] md:hidden mobile:hidden"/>
-          <CarouselNext className="ml-10 md:hidden mobile:hidden"/>
-        </Carousel>
-
-        </div>
+            <div className=" w-[100%] flex justify-center h-full ">
+              <Carousel
+                plugins={[plugin.current]}
+                className="w-[50vw] h-full justify-self-center md:h-[60vh] md:w-[100%] mobile:w-full"
+                onMouseEnter={plugin.current.stop}
+                onMouseLeave={plugin.current.reset}
+              >
+                <CarouselContent>
+                  {products.map((product) => (
+                    <CarouselItem key={product.id}>
+                      <div className="p-1 md:h-[100%] md:flex md:justify-center mobile:h-[100%] mobile:flex mobile:justify-center">
+                        <Card className="h-auto flex justify-center border-none] shadow-lg dark:shadow-[0px 5px 15px rgba(255, 255, 255, 0.2)] md:h-full md:flex md:flex-col md:items-center lg:h-[65vh] lg:w-[80vw] lg:overflow-hidden mobile:h-[60vh] mobile:flex mobile:flex-col mobile:items-center transition-transform duration-300 ease-in-out hover:scale-110">
+                          <Image
+                            src={product.imageUrl}
+                            width="1000"
+                            height="1000"
+                            alt={product.name}
+                            className="aspect-square overflow-hidden rounded-t-xl object-cover md:w-[80%] lg:h-full lg:w-full mobile:w-[80vw]"
+                          />
+                          <CardContent className="flex flex-col aspect-square items-center justify-center p-6 md:w-[80%] md:absolute md:opacity-90 mobile:absolute mobile:opacity-90">
+                            <h3 className="text-lg font-bold text-white">
+                              {product.name}
+                            </h3>
+                            <p className="text-white">
+                              ${product.price.toFixed(2)}
+                            </p>
+                            <Link
+                              href="#"
+                              className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                              prefetch={false}
+                            >
+                              View Product
+                            </Link>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="mr-[500px] md:hidden mobile:hidden" />
+                <CarouselNext className="ml-10 md:hidden mobile:hidden" />
+              </Carousel>
+            </div>
           </div>
         </section>
 
@@ -373,7 +382,7 @@ const LandingPageBody: React.FC = () => {
 
         {/* Footer */}
 
-        <Footer/>
+        <Footer />
       </main>
     </>
   );

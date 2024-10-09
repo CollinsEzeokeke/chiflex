@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { generateProducts } from '@/utils/fakerApi';
-import { Product } from '@/types/productTypes';
-import { CardContent, Card } from './ui/card';
-import { Button } from './ui/button';
-import Separator from './separator';
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { generateProducts } from "@/utils/fakerApi";
+import { Product } from "@/types/productTypes";
+import { CardContent, Card } from "./ui/card";
+import { Button } from "./ui/button";
+import Separator from "./separator";
 
 export default function UsersPage() {
   // State to store products and filtered products
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   // Fetch products on component mount
   useEffect(() => {

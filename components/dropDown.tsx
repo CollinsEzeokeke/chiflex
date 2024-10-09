@@ -14,20 +14,29 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { Menu, User, Key, LogIn, Smartphone, Moon, Sun, LogOut } from "lucide-react";
+import {
+  Menu,
+  User,
+  Key,
+  LogIn,
+  Smartphone,
+  Moon,
+  Sun,
+  LogOut,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
 export function DropDownMenu() {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return null
+    return null;
   }
 
   return (
@@ -66,10 +75,18 @@ export function DropDownMenu() {
             <DropdownMenuSubTrigger>Mens</DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                <DropdownMenuItem><Link href="/general/mens/sneaker">Sneakers</Link></DropdownMenuItem>
-                <DropdownMenuItem><Link href="/general/mens/dressShoes">Dress Shoes</Link></DropdownMenuItem>
-                <DropdownMenuItem><Link href="/general/mens/boots">Boots</Link></DropdownMenuItem>
-                <DropdownMenuItem><Link href="/general/mens/sandals">Sandals</Link></DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/general/mens/sneaker">Sneakers</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/general/mens/dressShoes">Dress Shoes</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/general/mens/boots">Boots</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/general/mens/sandals">Sandals</Link>
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <Link href="/general/mens">More...</Link>
@@ -82,10 +99,18 @@ export function DropDownMenu() {
             <DropdownMenuSubTrigger>Womens</DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                <DropdownMenuItem><Link href="/general/womens/heels">Heels</Link></DropdownMenuItem>
-                <DropdownMenuItem><Link href="/general/womens/flats">Flats</Link></DropdownMenuItem>
-                <DropdownMenuItem><Link href="/general/womens/boots">Boots</Link></DropdownMenuItem>
-                <DropdownMenuItem><Link href="/general/mens/sneaker">Sneakers</Link></DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/general/womens/heels">Heels</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/general/womens/flats">Flats</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/general/womens/boots">Boots</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/general/mens/sneaker">Sneakers</Link>
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <Link href="/general/womens">More...</Link>
@@ -115,31 +140,31 @@ export function DropDownMenu() {
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>Theme</DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          <span>System</span>
-          <DropdownMenuShortcut>
-          <Smartphone />
-          </DropdownMenuShortcut>
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          <span>Light</span>
-          <DropdownMenuShortcut>
-          <Sun />
-          </DropdownMenuShortcut>
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          <span>Dark</span>
-          <DropdownMenuShortcut>
-          <Moon />
-          </DropdownMenuShortcut>
-        </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTheme("system")}>
+              <span>System</span>
+              <DropdownMenuShortcut>
+                <Smartphone />
+              </DropdownMenuShortcut>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTheme("light")}>
+              <span>Light</span>
+              <DropdownMenuShortcut>
+                <Sun />
+              </DropdownMenuShortcut>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTheme("dark")}>
+              <span>Dark</span>
+              <DropdownMenuShortcut>
+                <Moon />
+              </DropdownMenuShortcut>
+            </DropdownMenuItem>
           </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           Log out
           <DropdownMenuShortcut>
-          <LogOut />
+            <LogOut />
           </DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>

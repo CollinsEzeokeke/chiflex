@@ -5,8 +5,9 @@ import ThemeProvider from "@/app/providers/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Chiflex",
-  description: "The best online store for all types of footwear. We bring you the best at your own fingertips. Shop now!",
-}
+  description:
+    "The best online store for all types of footwear. We bring you the best at your own fingertips. Shop now!",
+};
 
 const inter = Inter({ subsets: ["latin"] });
 

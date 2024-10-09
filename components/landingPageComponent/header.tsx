@@ -9,7 +9,7 @@ import Link from "next/link";
 import { motion, AnimatePresence, px } from "framer-motion";
 import { ChevronDown, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import SearchPopUp from "@/components/searchPopUp"
+import SearchPopUp from "@/components/searchPopUp";
 import Image from "next/image";
 import { DropDownMenu } from "../dropDown";
 
@@ -54,9 +54,9 @@ const navItems = [
     },
     sections: [
       { title: "Sneakers", href: "/general/unisex/#sneakers" },
-      { title: "Sandals", href: "/general/unisex/#sandals" },
-      { title: "Slip-ons", href: "/general/unisex/#slip-ons" },
+      { title: "Causual Shoes", href: "/general/unisex/#causual-shoes" },
       { title: "Athletic", href: "/general/unisex/#athletic" },
+      { title: "Slip-Ons", href: "/general/unisex/#slip-ons" },
     ],
   },
 ];
@@ -135,8 +135,8 @@ const Header: React.FC = () => {
           </Link>
 
           <div className="flex text-sm justify-between items-center w-[5%]">
-          <User className="text-lg text-red-500"/>
-          <DropDownMenu />
+            <User className="text-lg text-red-500" />
+            <DropDownMenu />
           </div>
         </header>
       ) : (
@@ -244,8 +244,8 @@ const Header: React.FC = () => {
             </ul>
           </nav>
           <div className="flex text-sm justify-between items-center w-[5%]">
-          <ThemeSwitcher/>
-          <User className="text-lg"/>
+            <ThemeSwitcher />
+            <User className="text-lg" />
           </div>
         </header>
       )}

@@ -9,15 +9,31 @@ import Footer from "@/components/footer";
 type Categories = {
   name: string;
   image: string;
+  link: string;
 };
 
 export default function UnisexPage() {
-
   const categories: Categories[] = [
-    { name: "Sneakers", image: "/images/unisexSneakers.jpg" },
-    { name: "Casual Shoes", image: "/images/unisexCasual.jpg" },
-    { name: "Athletic Shoes", image: "/images/unisexAthletic.jpg" },
-    { name: "Slip-Ons", image: "/images/unisexSlipOns.jpg" },
+    {
+      name: "Sneakers",
+      image: "/images/unisexSneakers.jpg",
+      link: "/general/unisex/#sneakers",
+    },
+    {
+      name: "Casual Shoes",
+      image: "/images/unisexCasual.jpg",
+      link: "/general/unisex/#sneakers",
+    },
+    {
+      name: "Athletic Shoes",
+      image: "/images/unisexAthletic.jpg",
+      link: "/general/unisex/#sneakers",
+    },
+    {
+      name: "Slip-Ons",
+      image: "/images/unisexSlipOns.jpg",
+      link: "/general/unisex/#sneakers",
+    },
   ];
 
   return (
@@ -87,10 +103,10 @@ export default function UnisexPage() {
       </main>
       {/* Shopping Sections */}
       <section className="mb-20">
-        <UsersPage/>
+        <UsersPage />
       </section>
 
-      <Footer/>
+      <Footer />
     </div>
   );
 }

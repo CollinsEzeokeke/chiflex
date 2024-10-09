@@ -1,26 +1,26 @@
-'use client'
+"use client";
 
-import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
-import { Moon, Sun, Laptop } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { Moon, Sun, Laptop } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
 export default function Component() {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return null
+    return null;
   }
 
   return (
@@ -47,5 +47,5 @@ export default function Component() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

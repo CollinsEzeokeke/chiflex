@@ -11,7 +11,6 @@ type Categories = {
 };
 
 export default function WomensPage() {
-
   const categories: Categories[] = [
     { name: "Heels", image: "/images/heels.jpg" },
     { name: "Flats", image: "/images/flats.jpg" },
@@ -30,8 +29,8 @@ export default function WomensPage() {
             </h1>
             <p className="text-xl">
               Explore our exquisite range of women&apos;s shoes designed for
-              elegance, comfort, and versatility. From stunning heels to chic flats,
-              find your perfect pair to elevate any outfit.
+              elegance, comfort, and versatility. From stunning heels to chic
+              flats, find your perfect pair to elevate any outfit.
             </p>
             <div className="space-x-4">
               <Link
@@ -85,23 +84,23 @@ export default function WomensPage() {
         </div>
       </main>
       <section className="mb-20">
-        <WomensDataDisplay/>
+        <WomensDataDisplay />
       </section>
 
       <section id="heels">
-<p>heels</p>
+        <p>heels</p>
       </section>
       <section id="flats">
-<p>flats</p>
+        <p>flats</p>
       </section>
       <section id="boots">
-<p>boots</p>
+        <p>boots</p>
       </section>
       <section id="sneakers">
-<p>sneakers</p>
+        <p>sneakers</p>
       </section>
 
-      <Footer/>
+      <Footer />
     </div>
   );
 }
