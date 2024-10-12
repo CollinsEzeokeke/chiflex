@@ -41,3 +41,5 @@ pnpm-lock.yaml
 # component file
 /components/component.tsx
 
+/.env
+/.env.local

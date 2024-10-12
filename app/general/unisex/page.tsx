@@ -2,8 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/landingPageComponent/header";
 import UsersPage from "@/components/unisexDataDisplay";
-import { Search } from "lucide-react";
-import Separator from "@/components/separator";
 import Footer from "@/components/footer";
 
 type Categories = {
