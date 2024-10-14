@@ -1,59 +1,98 @@
-import { PrismaAdapter } from "@auth/prisma-adapter"
-import { NextAuthOptions } from "next-auth"
-import { prisma } from "./prisma"
-import EmailProvider from "next-auth/providers/email"
-import resend from "./resend"
+// /lib/auth.ts
 
-export const authOptions: NextAuthOptions = {
+import NextAuth from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import prisma from "@/prisma/prisma";
+import GoogleProvider from "next-auth/providers/google";
+import { emailTemplate } from "@/components/EmailTemplate";
+import { Resend } from 'resend';
+import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+const google_client_id = process.env.GOOGLE_CLIENT_ID;
+const google_client_secret = process.env.GOOGLE_CLIENT_SECRET;
+if(!google_client_id || !google_client_secret){
+  throw new Error("Google client secrets not found");
+}
+export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
+  session: { strategy: "jwt" },
+  pages: {
+    signIn: "/login",
+    signOut: "/logout",
+  },
   providers: [
-    EmailProvider({
-      server: {
-        host: process.env.EMAIL_SERVER_HOST,
-        port: process.env.EMAIL_SERVER_PORT,
-        auth: {
-          user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD,
-        },
-      },
+    GoogleProvider({
+      clientId: google_client_id,
+      clientSecret: google_client_secret,
+    }),
+    {
+      id: "resend",
+      type: "email",
       from: process.env.EMAIL_FROM,
-      sendVerificationRequest: async ({ identifier, url, provider }) => {
-        const user = await prisma.user.findUnique({
-          where: {
-            email: identifier,
-          },
-          select: {
-            emailVerified: true,
-          },
-        })
-
-        const result = await resend.emails.send({
-          from: 'onboarding@resend.dev',
-          to: identifier,
-          subject: 'Sign in to Your E-commerce Site',
-          html: `<p>Click <a href="${url}">here</a> to sign in.</p>`
-        })
-
-        // You can add additional logic here, such as:
-        if (!user?.emailVerified) {
-          await sendWelcomeEmail(identifier)
+      server: {}, // This is required but not used
+      maxAge: 24 * 60 * 60, // How long email links are valid for (default 24h)
+      name: "Email", // Add this line
+      sendVerificationRequest: async ({ identifier: email, url }) => {
+        try {
+          const result = await resend.emails.send({
+            from: process.env.EMAIL_FROM!,
+            to: email,
+            subject: 'Sign in to Your App',
+            html: emailTemplate({ url }),
+          });
+          console.log('Verification email sent:', result);
+        } catch (error) {
+          console.error('Error sending verification email:', error);
+          throw new Error('Failed to send verification email');
         }
       },
-    }),
+    },
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" }
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email as string }
+        });
+        if (!user || !user.password) {
+          return null;
+        }
+        const isPasswordValid = await bcrypt.compare(
+          credentials.password as string,
+          user.password
+        );
+        if (!isPasswordValid) {
+          return null;
+        }
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          role: user.role,
+        };
+      }
+    })
   ],
-  // Add other NextAuth options as needed
-}
-
-async function sendWelcomeEmail(email: string) {
-  try {
-    const result = await resend.emails.send({
-      from: 'Your Store <noreply@yourstore.com>',
-      to: email,
-      subject: 'Welcome to Our Store!',
-      html: `<p>Hello,</p><p>Welcome to our store! We're excited to have you on board.</p>`
-    });
-    console.log('Welcome email sent:', result);
-  } catch (error) {
-    console.error('Error sending welcome email:', error);
-  }
-}
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.role = token.role as string;
+      }
+      return session;
+    },
+  },
+});
