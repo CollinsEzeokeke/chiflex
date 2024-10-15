@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/providers/ThemeProvider";
 import TanStackProvider from "@/providers/TanStackProvider";
+import Providers from "@/components/providers";
 
 export const metadata: Metadata = {
   title: "Chiflex",
@@ -22,7 +23,9 @@ export default function RootLayout({
       <body className="scroll-smooth">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <TanStackProvider>
-          {children}
+            <Providers>
+              {children}
+            </Providers>
           </TanStackProvider>
         </ThemeProvider>
       </body>

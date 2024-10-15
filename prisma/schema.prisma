@@ -20,7 +20,7 @@ model User {
   id            String    @id @default(cuid())
   email         String    @unique
   password      String?
-  role          UserRole
+  role          UserRole  @default(BASIC_USER)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
@@ -34,7 +34,8 @@ model User {
   telephone     String?
   
   // NextAuth fields
-  emailVerified DateTime?
+  // so i removed this out as i haven't started checking this
+  // emailVerified DateTime?
   image         String?
 
   // Relationships

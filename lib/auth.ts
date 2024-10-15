@@ -1,19 +1,24 @@
 // /lib/auth.ts
 
-import NextAuth from "next-auth";
+import NextAuth, { Session } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/prisma/prisma";
 import GoogleProvider from "next-auth/providers/google";
-import { emailTemplate } from "@/components/EmailTemplate";
-import { Resend } from 'resend';
+import { Resend } from "resend";
+import { User, UserRole } from "@prisma/client";
+import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+import { UserId } from "@/types/next-auth";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const google_client_id = process.env.GOOGLE_CLIENT_ID;
-const google_client_secret = process.env.GOOGLE_CLIENT_SECRET;
-if(!google_client_id || !google_client_secret){
-  throw new Error("Google client secrets not found");
+function getClient() {
+  const google_client_id = process.env.GOOGLE_CLIENT_ID;
+  const google_client_secret = process.env.GOOGLE_CLIENT_SECRET;
+  if (!google_client_id || !google_client_secret) {
+    throw new Error("Google client secrets not found");
+  }
+  return { google_client_id, google_client_secret };
 }
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -24,43 +29,21 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   providers: [
     GoogleProvider({
-      clientId: google_client_id,
-      clientSecret: google_client_secret,
+      clientId: getClient().google_client_id,
+      clientSecret: getClient().google_client_secret,
     }),
-    {
-      id: "resend",
-      type: "email",
-      from: process.env.EMAIL_FROM,
-      server: {}, // This is required but not used
-      maxAge: 24 * 60 * 60, // How long email links are valid for (default 24h)
-      name: "Email", // Add this line
-      sendVerificationRequest: async ({ identifier: email, url }) => {
-        try {
-          const result = await resend.emails.send({
-            from: process.env.EMAIL_FROM!,
-            to: email,
-            subject: 'Sign in to Your App',
-            html: emailTemplate({ url }),
-          });
-          console.log('Verification email sent:', result);
-        } catch (error) {
-          console.error('Error sending verification email:', error);
-          throw new Error('Failed to send verification email');
-        }
-      },
-    },
     CredentialsProvider({
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "text" },
-        password: { label: "Password", type: "password" }
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
           return null;
         }
         const user = await prisma.user.findUnique({
-          where: { email: credentials.email as string }
+          where: { email: credentials.email as string },
         });
         if (!user || !user.password) {
           return null;
@@ -75,24 +58,61 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return {
           id: user.id,
           email: user.email,
+          image: user.image,
           name: user.name,
           role: user.role,
         };
-      }
-    })
+      },
+    }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.role = user.role;
+    async signIn({ user, account, profile }) {
+      if (account && account.provider === "google") {
+        // Store Google profile data for later use
+        sessionStorage.setItem("googleProfile", JSON.stringify(profile));
+        return true;
       }
-      return token;
+      return false;
     },
-    async session({ session, token }) {
-      if (session.user) {
-        session.user.role = token.role as string;
+
+    async jwt({ token, user }): Promise<JWT> {
+      console.log(token.id);
+      if (user) {
+        // This is only called on initial sign in
+        const prismaUser = user as User;
+        token.id = prismaUser.id;
+        token.role = prismaUser.role;
+      }
+
+      // On subsequent calls, token exists, but we need to check the database
+      const dbUser = await prisma.user.findUnique({
+        where: { email: token.email as string },
+        select: { id: true, name: true, email: true, image: true, role: true },
+      });
+
+      if (!dbUser) {
+        // If user not found in the database, return the original token
+        return token;
+      }
+
+      // Update the token with the latest user information
+      return {
+        id: dbUser.id,
+        name: dbUser.name,
+        email: dbUser.email,
+        image: dbUser.image,
+        role: dbUser.role as UserRole,
+      };
+    },
+
+    async session({ session, token }: { session: Session; token: any }) {
+      if (token && session.user) {
+        session.user.id = token.id as UserId;
       }
       return session;
+    },
+    redirect() {
+      return "/dashboard";
     },
   },
 });
