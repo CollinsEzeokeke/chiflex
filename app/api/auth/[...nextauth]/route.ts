@@ -1,3 +1,3 @@
 import { handlers } from "@/lib/auth";
-console.log(`your handler is ${handlers} of course it is`);
-export const { GET, POST } = handlers;
+console.log("we actually hit this moda fucker");
+export const { GET, POST } = handlers

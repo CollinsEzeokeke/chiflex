@@ -7,15 +7,16 @@ import GoogleProvider from "next-auth/providers/google";
 import { User, UserRole } from "@prisma/client";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { compare } from "bcryptjs";
+import Google from "next-auth/providers/google";
 
-function getClient() {
-  const google_client_id = process.env.GOOGLE_CLIENT_ID;
-  const google_client_secret = process.env.GOOGLE_CLIENT_SECRET;
-  if (!google_client_id || !google_client_secret) {
-    throw new Error("Google client secrets not found");
-  }
-  return { google_client_id, google_client_secret };
-}
+// function getClient() {
+//   const google_client_id = process.env.GOOGLE_CLIENT_ID;
+//   const google_client_secret = process.env.GOOGLE_CLIENT_SECRET;
+//   if (!google_client_id || !google_client_secret) {
+//     throw new Error("Google client secrets not found");
+//   }
+//   return { google_client_id, google_client_secret };
+// }
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },
@@ -24,10 +25,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     verifyRequest: "/auth/verify-request",
   },
   providers: [
-    GoogleProvider({
-      clientId: getClient().google_client_id,
-      clientSecret: getClient().google_client_secret,
-    }),
+  Google,
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -61,6 +59,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
+    // async redirect({ url, baseUrl }) {
+    //   // Redirect to the verification page after sign-in
+    //   if (url.includes('/api/auth/signin')) {
+    //     console.log("the user is about the be redirected to the signin page")
+    //     return `${baseUrl}/auth/verify-request`;
+    //   }
+    //   return baseUrl;
+    // },
     async signIn({ user, account, profile }) {
       if (account && account.provider === "google") {
         // Store Google profile data for later use
@@ -69,6 +75,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
       return false;
     },
+
     async jwt({ token, user, trigger }) {
       const prismaUser = user as User;
       if (user) {
@@ -99,8 +106,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
       return session;
     },
-    redirect() {
-      return "/dashboard";
-    },
+    // redirect() {
+    //   return "/dashboard";
+    // },
   },
 });
+
+
