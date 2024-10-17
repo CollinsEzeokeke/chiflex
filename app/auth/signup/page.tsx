@@ -78,7 +78,7 @@ export default function SignUp() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
-      <HomeLink className="absolute top-[-0.130rem] p-6 flex justify-start items-center w-screen h-10"/>
+      <HomeLink className="absolute top-[-0.130rem] p-6 flex justify-start items-center w-screen h-10" />
       <Card className="w-full max-w-md shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] dark:shadow-[0_20px_50px_rgba(255,_255,_255,_0.2)] transition-shadow duration-300">
         <CardHeader>
           <CardTitle>Sign Up</CardTitle>

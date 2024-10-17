@@ -35,8 +35,13 @@ model User {
   
   // NextAuth fields
   // so i removed this out as i haven't started checking this
-  // emailVerified DateTime?
+  // emailVerified Boolean?
   image         String?
+
+  // for getting the token
+  
+  emailVerificationToken String?
+  emailVerified         Boolean   @default(false)
 
   // Relationships
   products      Product[]

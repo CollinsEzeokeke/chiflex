@@ -13,4 +13,4 @@ const TanStackProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default TanStackProvider
+export default TanStackProvider;

@@ -1,8 +1,8 @@
-import Image, { ImageProps } from 'next/image';
-import { motion, MotionProps } from 'framer-motion';
+import Image, { ImageProps } from "next/image";
+import { motion, MotionProps } from "framer-motion";
 
 // Combine the types from Next.js Image and framer-motion props
-type MotionImageProps = Omit<ImageProps, 'ref'> & MotionProps;
+type MotionImageProps = Omit<ImageProps, "ref"> & MotionProps;
 
 // Create a motion-enhanced version of the Next.js Image component
 const MotionImage: React.FC<MotionImageProps> = ({
@@ -29,4 +29,3 @@ const MotionImage: React.FC<MotionImageProps> = ({
 };
 
 export default MotionImage;
-

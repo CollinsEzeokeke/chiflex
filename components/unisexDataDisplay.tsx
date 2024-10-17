@@ -2,7 +2,12 @@
 
 import { useState, useEffect, ChangeEvent } from "react";
 import Image from "next/image";
-import { generateProducts, sandalsProducts, athleticProducts, slipOnsProducts } from "@/utils/unisexFaker";
+import {
+  generateProducts,
+  sandalsProducts,
+  athleticProducts,
+  slipOnsProducts,
+} from "@/utils/unisexFaker";
 import { Product } from "@/types/productTypes";
 import { CardContent, Card } from "./ui/card";
 import { Button } from "./ui/button";
@@ -13,19 +18,19 @@ export default function UsersPage() {
   // State to store products and filtered products
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [ isLoading, setIsLoading ] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   // State to store casual and filtered products
   const [casual, setCasual] = useState<Product[]>([]);
   const [filteredCasual, setFilteredCasual] = useState<Product[]>([]);
 
   //state to store athletic and filtered product
-  const [ athletic, setAthletic ] = useState<Product[]>([]);
+  const [athletic, setAthletic] = useState<Product[]>([]);
   const [filteredAthletic, setFilteredAthletic] = useState<Product[]>([]);
 
   // for the slipOns
-  const [ slipOns, setSlipOns ] = useState<Product[]>([]);
-  const [ filteredSlipOns, setFilteredSlipOns ] = useState<Product[]>([]); 
+  const [slipOns, setSlipOns] = useState<Product[]>([]);
+  const [filteredSlipOns, setFilteredSlipOns] = useState<Product[]>([]);
 
   // Single search term for both product types
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -38,15 +43,15 @@ export default function UsersPage() {
         const generatedProducts = await generateProducts(20);
         setProducts(generatedProducts);
         setFilteredProducts(generatedProducts);
-  
+
         const generatedCasual = await sandalsProducts(20);
         setCasual(generatedCasual);
         setFilteredCasual(generatedCasual);
-  
+
         const generatedAthletic = await athleticProducts(20);
         setAthletic(generatedAthletic);
         setFilteredAthletic(generatedAthletic);
-  
+
         const generatedSlipOns = await slipOnsProducts(20);
         setSlipOns(generatedSlipOns);
         setFilteredSlipOns(generatedSlipOns);
@@ -56,7 +61,7 @@ export default function UsersPage() {
         setIsLoading(false);
       }
     };
-  
+
     fetchProducts();
   }, []);
 
@@ -74,7 +79,7 @@ export default function UsersPage() {
       product.name.toLowerCase().includes(value)
     );
     setFilteredCasual(filteredCasualShoes);
-    
+
     const filteredAthleticShoes = athletic.filter((product) =>
       product.name.toLowerCase().includes(value)
     );
@@ -83,12 +88,9 @@ export default function UsersPage() {
       product.name.toLowerCase().includes(value)
     );
     setFilteredCasual(filteredSlipOnsShoes);
-
   };
 
-
-//// using tanstack react query to replace the product
-
+  //// using tanstack react query to replace the product
 
   return (
     <div className="overflow-x-hidden">
@@ -107,132 +109,158 @@ export default function UsersPage() {
           className="px-4 py-2 w-1/2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
         />
       </div>
-{isLoading? (<div>
-  <Loading/>
-</div>) : (<div>
-  {filteredProducts.length > 0 || filteredCasual.length > 0 || filteredAthletic.length > 0 || filteredSlipOns.length > 0 ? (
+      {isLoading ? (
         <div>
-          {filteredProducts.length > 0 ? (<div>
-<h2 className="text-2xl font-semibold mb-28 relative -bottom-10 left-20 overflow-x-hidden w-full">
-            Sneakers
-          </h2>
-          <div className="flex justify-center w-full mb-20">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-[95%]">
-              {filteredProducts.map((product, index) => (
-                <Card key={index}>
-                  <CardContent className="p-4">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      width={200}
-                      height={200}
-                      className="w-full h-48 object-cover mb-4 rounded transition-transform duration-300 ease-in-out hover:scale-110"
-                    />
-                    <h3 className="font-semibold">{product.name}</h3>
-                    <p className="text-lg font-bold text-primary mt-1">
-                      ${product.price}
-                    </p>
-                    <Button className="w-full mt-2">Add to Cart</Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-          </div>) : (
-            <div></div>)}
-          
-
-          <p id="casual-shoes"></p>
-          {filteredCasual.length > 0 ? (<div><Separator />
-          <h2 className="text-2xl font-semibold mb-28 relative -bottom-10 left-20 overflow-x-hidden w-full">
-            Casual Shoes
-          </h2>
-          <div className="flex justify-center w-full mb-20">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-[95%]">
-              {filteredCasual.map((product, index) => (
-                <Card key={index}>
-                  <CardContent className="p-4">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      width={200}
-                      height={200}
-                      className="w-full h-48 object-cover mb-4 rounded transition-transform duration-300 ease-in-out hover:scale-110"
-                    />
-                    <h3 className="font-semibold">{product.name}</h3>
-                    <p className="text-lg font-bold text-primary mt-1">
-                      ${product.price}
-                    </p>
-                    <Button className="w-full mt-2">Add to Cart</Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div></div>) : (<div></div>)}
-          
-          <p id="athletic"></p>
-          {filteredAthletic.length > 0 ? (<div><Separator />
-          <h2 className="text-2xl font-semibold mb-28 relative -bottom-10 left-20 overflow-x-hidden w-full">
-            Athletic
-          </h2>
-          <div className="flex justify-center w-full mb-20">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-[95%]">
-              {filteredAthletic.map((product, index) => (
-                <Card key={index}>
-                  <CardContent className="p-4">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      width={200}
-                      height={200}
-                      className="w-full h-48 object-cover mb-4 rounded transition-transform duration-300 ease-in-out hover:scale-110"
-                    />
-                    <h3 className="font-semibold">{product.name}</h3>
-                    <p className="text-lg font-bold text-primary mt-1">
-                      ${product.price}
-                    </p>
-                    <Button className="w-full mt-2">Add to Cart</Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div></div>) : (<div></div>)}
-          
-          <p id="slip-ons"></p>
-          {filteredSlipOns.length > 0 ? (<div><Separator />
-          <h2 className="text-2xl font-semibold mb-28 relative -bottom-10 left-20 overflow-x-hidden w-full">
-            Slip-Ons
-          </h2>
-          <div className="flex justify-center w-full mb-20">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-[95%]">
-              {filteredSlipOns.map((product, index) => (
-                <Card key={index}>
-                  <CardContent className="p-4">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      width={200}
-                      height={200}
-                      className="w-full h-48 object-cover mb-4 rounded transition-transform duration-300 ease-in-out hover:scale-110"
-                    />
-                    <h3 className="font-semibold">{product.name}</h3>
-                    <p className="text-lg font-bold text-primary mt-1">
-                      ${product.price}
-                    </p>
-                    <Button className="w-full mt-2">Add to Cart</Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div></div>) : (<div></div>)}
-          
+          <Loading />
         </div>
       ) : (
-        <div className="col-span-4 text-center text-red-500 text-xl font-semibold h-[50vh] flex items-center justify-center">
-          No such Product Found
+        <div>
+          {filteredProducts.length > 0 ||
+          filteredCasual.length > 0 ||
+          filteredAthletic.length > 0 ||
+          filteredSlipOns.length > 0 ? (
+            <div>
+              {filteredProducts.length > 0 ? (
+                <div>
+                  <h2 className="text-2xl font-semibold mb-28 relative -bottom-10 left-20 overflow-x-hidden w-full">
+                    Sneakers
+                  </h2>
+                  <div className="flex justify-center w-full mb-20">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-[95%]">
+                      {filteredProducts.map((product, index) => (
+                        <Card key={index}>
+                          <CardContent className="p-4">
+                            <Image
+                              src={product.image}
+                              alt={product.name}
+                              width={200}
+                              height={200}
+                              className="w-full h-48 object-cover mb-4 rounded transition-transform duration-300 ease-in-out hover:scale-110"
+                            />
+                            <h3 className="font-semibold">{product.name}</h3>
+                            <p className="text-lg font-bold text-primary mt-1">
+                              ${product.price}
+                            </p>
+                            <Button className="w-full mt-2">Add to Cart</Button>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div></div>
+              )}
+
+              <p id="casual-shoes"></p>
+              {filteredCasual.length > 0 ? (
+                <div>
+                  <Separator />
+                  <h2 className="text-2xl font-semibold mb-28 relative -bottom-10 left-20 overflow-x-hidden w-full">
+                    Casual Shoes
+                  </h2>
+                  <div className="flex justify-center w-full mb-20">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-[95%]">
+                      {filteredCasual.map((product, index) => (
+                        <Card key={index}>
+                          <CardContent className="p-4">
+                            <Image
+                              src={product.image}
+                              alt={product.name}
+                              width={200}
+                              height={200}
+                              className="w-full h-48 object-cover mb-4 rounded transition-transform duration-300 ease-in-out hover:scale-110"
+                            />
+                            <h3 className="font-semibold">{product.name}</h3>
+                            <p className="text-lg font-bold text-primary mt-1">
+                              ${product.price}
+                            </p>
+                            <Button className="w-full mt-2">Add to Cart</Button>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div></div>
+              )}
+
+              <p id="athletic"></p>
+              {filteredAthletic.length > 0 ? (
+                <div>
+                  <Separator />
+                  <h2 className="text-2xl font-semibold mb-28 relative -bottom-10 left-20 overflow-x-hidden w-full">
+                    Athletic
+                  </h2>
+                  <div className="flex justify-center w-full mb-20">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-[95%]">
+                      {filteredAthletic.map((product, index) => (
+                        <Card key={index}>
+                          <CardContent className="p-4">
+                            <Image
+                              src={product.image}
+                              alt={product.name}
+                              width={200}
+                              height={200}
+                              className="w-full h-48 object-cover mb-4 rounded transition-transform duration-300 ease-in-out hover:scale-110"
+                            />
+                            <h3 className="font-semibold">{product.name}</h3>
+                            <p className="text-lg font-bold text-primary mt-1">
+                              ${product.price}
+                            </p>
+                            <Button className="w-full mt-2">Add to Cart</Button>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div></div>
+              )}
+
+              <p id="slip-ons"></p>
+              {filteredSlipOns.length > 0 ? (
+                <div>
+                  <Separator />
+                  <h2 className="text-2xl font-semibold mb-28 relative -bottom-10 left-20 overflow-x-hidden w-full">
+                    Slip-Ons
+                  </h2>
+                  <div className="flex justify-center w-full mb-20">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-[95%]">
+                      {filteredSlipOns.map((product, index) => (
+                        <Card key={index}>
+                          <CardContent className="p-4">
+                            <Image
+                              src={product.image}
+                              alt={product.name}
+                              width={200}
+                              height={200}
+                              className="w-full h-48 object-cover mb-4 rounded transition-transform duration-300 ease-in-out hover:scale-110"
+                            />
+                            <h3 className="font-semibold">{product.name}</h3>
+                            <p className="text-lg font-bold text-primary mt-1">
+                              ${product.price}
+                            </p>
+                            <Button className="w-full mt-2">Add to Cart</Button>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div></div>
+              )}
+            </div>
+          ) : (
+            <div className="col-span-4 text-center text-red-500 text-xl font-semibold h-[50vh] flex items-center justify-center">
+              No such Product Found
+            </div>
+          )}
         </div>
       )}
-</div>)}
     </div>
   );
 }

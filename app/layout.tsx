@@ -23,9 +23,7 @@ export default function RootLayout({
       <body className="scroll-smooth">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <TanStackProvider>
-            <Providers>
-              {children}
-            </Providers>
+            <Providers>{children}</Providers>
           </TanStackProvider>
         </ThemeProvider>
       </body>
