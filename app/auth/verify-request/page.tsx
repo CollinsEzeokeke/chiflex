@@ -11,7 +11,7 @@ export default function VerifyRequest() {
       <p className="text-sm text-gray-500">
         If you don&apos;t see the email, check other places it might be, like your junk, spam, social, or other folders.
       </p>
-      <Link href="/auth/signin" className="mt-8 text-blue-500 hover:text-blue-600">
+      <Link href="/auth/login" className="mt-8 text-blue-500 hover:text-blue-600">
         Return to sign in
       </Link>
     </div>

@@ -16,7 +16,7 @@ export default function Component() {
           Keep the magic alive here in the app
         </p>
         <Link
-          href="#"
+          href="/auth/login"
           className="inline-flex items-center justify-center w-full h-10 px-6 text-base font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
           prefetch={false}
         >
