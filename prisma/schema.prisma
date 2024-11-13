@@ -1,13 +1,11 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
@@ -16,141 +14,149 @@ enum UserRole {
   COMPANY
   SUPER_ADMIN
 }
+
 model User {
-  id            String    @id @default(cuid())
-  email         String    @unique
-  password      String?
-  role          UserRole  @default(BASIC_USER)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-
-  // Fields for basic users
-  name          String?
-  
-  // Fields for companies
-  companyName   String?
-  description   String?
-  location      String?
-  telephone     String?
-  
-  // NextAuth fields
-  // so i removed this out as i haven't started checking this
-  // emailVerified Boolean?
+  id            String   @id
+  email         String   @unique
+  name          String
+  username      String?  @unique
+  role          UserRole @default(BASIC_USER)
+  emailVerified Boolean  @default(false)
   image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
-  // for getting the token
-  
-  emailVerificationToken String?
-  emailVerified         Boolean   @default(false)
+  // Company-specific fields
+  companyName String?
+  description String?
+  location    String?
+  telephone   String?
 
-  // Relationships
-  products      Product[]
-  comments      Comment[]
-  ratings       Rating[]
-  companyProfile CompanyProfile?
-  givenCompanyComments Comment[] @relation("CompanyComments")
-  givenCompanyRatings Rating[] @relation("CompanyRatings")
-  receivedCompanyComments Comment[] @relation("ReceivedCompanyComments")
-  receivedCompanyRatings Rating[] @relation("ReceivedCompanyRatings")
-  
   // Authentication relationships
-  accounts      Account[]
-  sessions      Session[]
-}
+  Session Session[]
+  Account Account[]
 
-model Account {
-  id                 String    @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?   @db.Text
-  access_token       String?   @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?   @db.Text
-  session_state      String?
+  // Business relationships
+  products                Product[]
+  comments                Comment[]
+  ratings                 Rating[]
+  companyProfile          CompanyProfile?
+  givenCompanyComments    Comment[]       @relation("CompanyComments")
+  givenCompanyRatings     Rating[]        @relation("CompanyRatings")
+  receivedCompanyComments Comment[]       @relation("ReceivedCompanyComments")
+  receivedCompanyRatings  Rating[]        @relation("ReceivedCompanyRatings")
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  banned     Boolean?
+  banReason  String?
+  banExpires DateTime?
 
-  @@unique([provider, providerAccountId])
+  @@map("user")
 }
 
 model Session {
-  id           String   @id @default(cuid())
+  id           String   @id
   sessionToken String   @unique
+  expiresAt    DateTime
+  ipAddress    String?
+  userAgent    String?
   userId       String
-  expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  impersonatedBy String?
+
+  @@map("session")
 }
 
+model Account {
+  id                String    @id
+  accountId         String
+  providerId        String
+  userId            String
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken       String?   @db.Text
+  refreshToken      String?   @db.Text
+  idToken           String?   @db.Text
+  expiresAt         DateTime?
+  password          String?
+  type              String?
+  provider          String?
+  providerAccountId String?
+  token_type        String?
+  scope             String?
+  session_state     String?
 
-model VerificationToken {
-  id      String   @id @default(cuid())
-  email   String
-  token   String
-  expires DateTime
+  @@map("account")
+}
 
-  @@unique([email, token])
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  token      String?
+  expires    DateTime
+
+  expiresAt DateTime
+
+  @@map("verification")
+  @@unique([identifier, token])
 }
 
 model CompanyProfile {
-  id            String    @id @default(cuid())
-  userId        String    @unique
-  user          User      @relation(fields: [userId], references: [id])
-  description   String
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id])
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Product {
-  id            String    @id @default(cuid())
-  name          String
-  description   String
-  price         Float
-  imageUrl      String
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  price       Float
+  imageUrl    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   // Relationships
-  companyId     String
-  company       User      @relation(fields: [companyId], references: [id])
-  comments      Comment[]
-  ratings       Rating[]
+  companyId String
+  company   User      @relation(fields: [companyId], references: [id])
+  comments  Comment[]
+  ratings   Rating[]
 }
 
 model Comment {
-  id            String    @id @default(cuid())
-  content       String
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relationships
-  userId        String
-  user          User      @relation(fields: [userId], references: [id])
-  productId     String?
-  product       Product?  @relation(fields: [productId], references: [id])
-  companyId     String?
-  company       User?     @relation(name: "CompanyComments", fields: [companyId], references: [id])
-  receivingCompany User?  @relation(name: "ReceivedCompanyComments", fields: [receivingCompanyId], references: [id])
+  userId             String
+  user               User     @relation(fields: [userId], references: [id])
+  productId          String?
+  product            Product? @relation(fields: [productId], references: [id])
+  companyId          String?
+  company            User?    @relation(name: "CompanyComments", fields: [companyId], references: [id])
+  receivingCompany   User?    @relation(name: "ReceivedCompanyComments", fields: [receivingCompanyId], references: [id])
   receivingCompanyId String?
 }
 
 model Rating {
-  id            String    @id @default(cuid())
-  score         Int
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id        String   @id @default(cuid())
+  score     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relationships
-  userId        String
-  user          User      @relation(fields: [userId], references: [id])
-  productId     String?
-  product       Product?  @relation(fields: [productId], references: [id])
-  companyId     String?
-  company       User?     @relation(name: "CompanyRatings", fields: [companyId], references: [id])
-  receivingCompany User?  @relation(name: "ReceivedCompanyRatings", fields: [receivingCompanyId], references: [id])
+  userId             String
+  user               User     @relation(fields: [userId], references: [id])
+  productId          String?
+  product            Product? @relation(fields: [productId], references: [id])
+  companyId          String?
+  company            User?    @relation(name: "CompanyRatings", fields: [companyId], references: [id])
+  receivingCompany   User?    @relation(name: "ReceivedCompanyRatings", fields: [receivingCompanyId], references: [id])
   receivingCompanyId String?
 }
 
@@ -162,3 +168,51 @@ model PasswordResetToken {
 
   @@unique([email, token])
 }
+
+// model User {
+//   id            String   @id
+//   name          String
+//   email         String
+//   emailVerified Boolean
+//   image         String?
+//   createdAt     DateTime
+//   updatedAt     DateTime
+
+//   @@unique([email])
+//   @@map("user")
+// }
+
+// model Session {
+//   id        String   @id
+//   expiresAt DateTime
+//   ipAddress String?
+//   userAgent String?
+//   userId    String
+//   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+//   @@map("session")
+// }
+
+// model Account {
+//   id           String    @id
+//   accountId    String
+//   providerId   String
+//   userId       String
+//   user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   accessToken  String?
+//   refreshToken String?
+//   idToken      String?
+//   expiresAt    DateTime?
+//   password     String?
+
+//   @@map("account")
+// }
+
+// model Verification {
+//   id         String   @id
+//   identifier String
+//   value      String
+//   expiresAt  DateTime
+
+//   @@map("verification")
+// }
