@@ -12,6 +12,8 @@ interface LoadingSpinnerProps {
           <Image
             src="/loading.gif"
             alt="Loading..."
+            width={300}
+            height={300}
             className="w-16 h-16"
           />
           <div className="mt-4 text-gray-700 text-sm flex items-center">
