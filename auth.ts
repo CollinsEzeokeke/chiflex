@@ -10,7 +10,7 @@ import { betterAuth, User } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import prisma from "@/prisma/prisma";
 import SendEmail from "@/providers/emailProvider";
-import { admin } from "better-auth/plugins";
+import { admin, username } from "better-auth/plugins";
 
 
 export const auth = betterAuth({
@@ -41,9 +41,9 @@ export const auth = betterAuth({
   socialProviders: { 
     google: { 
         clientId: process.env.GOOGLE_CLIENT_ID as string, 
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET as string, 
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }, 
 }, 
 
-  plugins: [admin()],
+  plugins: [admin({defaultRole: "BASIC_USER"}),username()],
 });

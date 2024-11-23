@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,60 +8,46 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-enum UserRole {
-  BASIC_USER
-  COMPANY
-  SUPER_ADMIN
-}
-
 model User {
-  id            String   @id
-  email         String   @unique
-  name          String
-  username      String?  @unique
-  role          UserRole @default(BASIC_USER)
-  emailVerified Boolean  @default(false)
-  image         String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  // Company-specific fields
-  companyName String?
-  description String?
-  location    String?
-  telephone   String?
-
-  // Authentication relationships
-  Session Session[]
-  Account Account[]
-
-  // Business relationships
-  products                Product[]
-  comments                Comment[]
-  ratings                 Rating[]
-  companyProfile          CompanyProfile?
+  id                      String          @id
+  email                   String          @unique
+  name                    String
+  username                String?         @unique
+  role                    UserRole        @default(BASIC_USER)
+  emailVerified           Boolean         @default(false)
+  image                   String?
+  createdAt               DateTime        @default(now())
+  updatedAt               DateTime        @updatedAt
+  companyName             String?
+  description             String?
+  location                String?
+  telephone               String?
+  banExpires              DateTime?
+  banReason               String?
+  banned                  Boolean?
   givenCompanyComments    Comment[]       @relation("CompanyComments")
-  givenCompanyRatings     Rating[]        @relation("CompanyRatings")
   receivedCompanyComments Comment[]       @relation("ReceivedCompanyComments")
+  comments                Comment[]
+  companyProfile          CompanyProfile?
+  products                Product[]
+  givenCompanyRatings     Rating[]        @relation("CompanyRatings")
   receivedCompanyRatings  Rating[]        @relation("ReceivedCompanyRatings")
-
-  banned     Boolean?
-  banReason  String?
-  banExpires DateTime?
+  ratings                 Rating[]
+  Account                 Account[]
+  Session                 Session[]
 
   @@map("user")
 }
 
 model Session {
-  id           String   @id
-  sessionToken String   @unique
-  expiresAt    DateTime
-  ipAddress    String?
-  userAgent    String?
-  userId       String
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  id             String   @id
+  sessionToken   String   @unique
+  expiresAt      DateTime
+  ipAddress      String?
+  userAgent      String?
+  userId         String
   impersonatedBy String?
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("session")
 }
@@ -72,10 +57,9 @@ model Account {
   accountId         String
   providerId        String
   userId            String
-  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  accessToken       String?   @db.Text
-  refreshToken      String?   @db.Text
-  idToken           String?   @db.Text
+  accessToken       String?
+  refreshToken      String?
+  idToken           String?
   expiresAt         DateTime?
   password          String?
   type              String?
@@ -84,6 +68,7 @@ model Account {
   token_type        String?
   scope             String?
   session_state     String?
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("account")
 }
@@ -94,70 +79,63 @@ model Verification {
   value      String
   token      String?
   expires    DateTime
+  expiresAt  DateTime
 
-  expiresAt DateTime
-
-  @@map("verification")
   @@unique([identifier, token])
+  @@map("verification")
 }
 
 model CompanyProfile {
   id          String   @id @default(cuid())
   userId      String   @unique
-  user        User     @relation(fields: [userId], references: [id])
   description String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id])
 }
 
 model Product {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   name        String
   description String
   price       Float
   imageUrl    String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  // Relationships
-  companyId String
-  company   User      @relation(fields: [companyId], references: [id])
-  comments  Comment[]
-  ratings   Rating[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  companyId   String
+  comments    Comment[]
+  company     User      @relation(fields: [companyId], references: [id])
+  ratings     Rating[]
 }
 
 model Comment {
-  id        String   @id @default(cuid())
-  content   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relationships
+  id                 String   @id @default(cuid())
+  content            String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
   userId             String
-  user               User     @relation(fields: [userId], references: [id])
   productId          String?
-  product            Product? @relation(fields: [productId], references: [id])
   companyId          String?
-  company            User?    @relation(name: "CompanyComments", fields: [companyId], references: [id])
-  receivingCompany   User?    @relation(name: "ReceivedCompanyComments", fields: [receivingCompanyId], references: [id])
   receivingCompanyId String?
+  company            User?    @relation("CompanyComments", fields: [companyId], references: [id])
+  product            Product? @relation(fields: [productId], references: [id])
+  receivingCompany   User?    @relation("ReceivedCompanyComments", fields: [receivingCompanyId], references: [id])
+  user               User     @relation(fields: [userId], references: [id])
 }
 
 model Rating {
-  id        String   @id @default(cuid())
-  score     Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relationships
+  id                 String   @id @default(cuid())
+  score              Int
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
   userId             String
-  user               User     @relation(fields: [userId], references: [id])
   productId          String?
-  product            Product? @relation(fields: [productId], references: [id])
   companyId          String?
-  company            User?    @relation(name: "CompanyRatings", fields: [companyId], references: [id])
-  receivingCompany   User?    @relation(name: "ReceivedCompanyRatings", fields: [receivingCompanyId], references: [id])
   receivingCompanyId String?
+  company            User?    @relation("CompanyRatings", fields: [companyId], references: [id])
+  product            Product? @relation(fields: [productId], references: [id])
+  receivingCompany   User?    @relation("ReceivedCompanyRatings", fields: [receivingCompanyId], references: [id])
+  user               User     @relation(fields: [userId], references: [id])
 }
 
 model PasswordResetToken {
@@ -169,50 +147,8 @@ model PasswordResetToken {
   @@unique([email, token])
 }
 
-// model User {
-//   id            String   @id
-//   name          String
-//   email         String
-//   emailVerified Boolean
-//   image         String?
-//   createdAt     DateTime
-//   updatedAt     DateTime
-
-//   @@unique([email])
-//   @@map("user")
-// }
-
-// model Session {
-//   id        String   @id
-//   expiresAt DateTime
-//   ipAddress String?
-//   userAgent String?
-//   userId    String
-//   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-//   @@map("session")
-// }
-
-// model Account {
-//   id           String    @id
-//   accountId    String
-//   providerId   String
-//   userId       String
-//   user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-//   accessToken  String?
-//   refreshToken String?
-//   idToken      String?
-//   expiresAt    DateTime?
-//   password     String?
-
-//   @@map("account")
-// }
-
-// model Verification {
-//   id         String   @id
-//   identifier String
-//   value      String
-//   expiresAt  DateTime
-
-//   @@map("verification")
-// }
+enum UserRole {
+  BASIC_USER
+  COMPANY
+  SUPER_ADMIN
+}

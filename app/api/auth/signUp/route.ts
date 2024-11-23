@@ -1,7 +1,7 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { authClient } from "@/lib/auth-Client";
 
-export async function POST(req: Request) {
+export async function POST(req: Request, res: Response) {
     try {const { name, email, password,username } = await req.json()
     
     const { data, error } = await authClient.signUp.email({
