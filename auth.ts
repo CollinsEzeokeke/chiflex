@@ -17,6 +17,11 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql", // or "mysql", "postgresql", ...etc
   }),
+  cookie: {
+    secure: true,
+    sameSite: 'lax',
+    domain: process.env.NODE_ENV === 'production' ? '.vercel.app' : undefined
+  },
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
