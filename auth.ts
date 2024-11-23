@@ -38,12 +38,24 @@ export const auth = betterAuth({
       });
     },
   },
-  socialProviders: { 
-    google: { 
-        clientId: process.env.GOOGLE_CLIENT_ID as string, 
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    }, 
-}, 
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    },
+  },
 
-  plugins: [admin({defaultRole: "BASIC_USER"}),username()],
+  session: {
+    expiresIn: 60 * 60 * 24 * 7, // 7 days
+    updateAge: 60 * 60 * 24, // 1 day (every 1 day the session expiration is updated)
+    cookieCache: {
+      enabled: true,
+      maxAge: 60 * 15 // 15 minutes cache duration
+  }
+  },
+
+  plugins: [
+    admin({ defaultRole: "BASIC_USER" }),
+    username()
+  ],
 });

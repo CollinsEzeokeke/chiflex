@@ -4,7 +4,8 @@ import "./globals.css";
 import ThemeProvider from "@/providers/ThemeProvider";
 import TanStackProvider from "@/providers/TanStackProvider";
 import Providers from "@/components/providers";
-import { Toaster } from "@/components/ui/sonner"
+import Toaster from "@/components/ui/toaster";
+
 export const metadata: Metadata = {
   title: "Chiflex",
   description:
@@ -23,8 +24,8 @@ export default function RootLayout({
       <body className="scroll-smooth">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <TanStackProvider>
-          <Toaster />
             <Providers>{children}</Providers>
+            <Toaster />
           </TanStackProvider>
         </ThemeProvider>
       </body>
