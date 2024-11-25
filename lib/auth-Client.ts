@@ -6,7 +6,6 @@ export const authClient = createAuthClient({
     baseUrl: process.env.NODE_ENV === 'production' 
     ? process.env.BETTER_AUTH_URL
     : 'https://localhost:3000/api/auth',
-     secure: process.env.NODE_ENV === 'production',
     plugins: [ 
         usernameClient(), 
         emailOTPClient(),
