@@ -3,9 +3,7 @@ import { adminClient, usernameClient } from "better-auth/client/plugins"
 import { emailOTPClient } from "better-auth/client/plugins"
 
 export const authClient = createAuthClient({
-    baseUrl: process.env.NODE_ENV === 'production' 
-    ? process.env.BETTER_AUTH_URL
-    : 'https://localhost:3000/api/auth',
+    baseUrl: process.env.BETTER_AUTH_URL,
     plugins: [ 
         usernameClient(), 
         emailOTPClient(),
