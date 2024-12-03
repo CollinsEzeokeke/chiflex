@@ -6,7 +6,7 @@
 // 4. Google Authentication
 // 5. Admin privileges
 
-import { betterAuth, User } from "better-auth";
+import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import prisma from "@/prisma/prisma";
 import SendEmail from "@/providers/emailProvider";
@@ -25,7 +25,7 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
-    sendResetPassword: async (user: User, url: string) => {
+    sendResetPassword: async (user, url) => {
       await SendEmail({
         to: user.email,
         subject: "Reset your password",
