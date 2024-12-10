@@ -15,84 +15,84 @@ enum UserRole {
   ADMIN
 }
 
-model User {
-  id            String    @id
-  name          String
-  username      String?
-  email         String
-  emailVerified Boolean   @default(false)
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  Bio           String?
-  UserType      UserRole  @default(BASIC_USER)
-  //Relations
-  sessions Session[]
-  accounts Account[]
-  passkeys Passkey[]
+// model User {
+//   id            String    @id
+//   name          String
+//   username      String?
+//   email         String
+//   emailVerified Boolean   @default(false)
+//   image         String?
+//   createdAt     DateTime  @default(now())
+//   updatedAt     DateTime  @updatedAt
+//   Bio           String?
+//   UserType      UserRole  @default(BASIC_USER)
+//   //Relations
+//   sessions Session[]
+//   accounts Account[]
+//   passkeys Passkey[]
 
-  @@unique([email])
-  @@map("user")
-  @@unique([username])
-}
+//   @@unique([email])
+//   @@map("user")
+//   @@unique([username])
+// }
 
-model Session {
-  id        String   @id
-  expiresAt DateTime
-  token     String   @unique @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  ipAddress String
-  userAgent String
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+// model Session {
+//   id        String   @id
+//   expiresAt DateTime
+//   token     String   @unique @default(uuid())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   ipAddress String
+//   userAgent String
+//   userId    String
+//   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@map("session")
-}
+//   @@map("session")
+// }
 
-model Account {
-  id                    String    @id
-  accountId             String
-  providerId            String
-  userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  accessToken           String?
-  refreshToken          String?
-  idToken               String?
-  accessTokenExpiresAt  DateTime?
-  refreshTokenExpiresAt DateTime?
-  scope                 String?
-  password              String?
-  expiresAt             DateTime?
-  createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
+// model Account {
+//   id                    String    @id
+//   accountId             String
+//   providerId            String
+//   userId                String
+//   user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   accessToken           String?
+//   refreshToken          String?
+//   idToken               String?
+//   accessTokenExpiresAt  DateTime?
+//   refreshTokenExpiresAt DateTime?
+//   scope                 String?
+//   password              String?
+//   expiresAt             DateTime?
+//   createdAt             DateTime  @default(now())
+//   updatedAt             DateTime  @updatedAt
 
-  @@map("account")
-}
+//   @@map("account")
+// }
 
-model Verification {
-  id         String    @id
-  identifier String
-  value      String
-  expiresAt  DateTime
-  createdAt  DateTime?
-  updatedAt  DateTime?
+// model Verification {
+//   id         String    @id
+//   identifier String
+//   value      String
+//   expiresAt  DateTime
+//   createdAt  DateTime?
+//   updatedAt  DateTime?
 
-  @@map("verification")
-}
+//   @@map("verification")
+// }
 
-model Passkey {
-  id             String    @id
-  name           String?
-  publicKey      String
-  userId         String
-  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  webauthnUserID String
-  counter        Int
-  deviceType     String
-  backedUp       Boolean
-  transports     String?
-  createdAt      DateTime?
+// model Passkey {
+//   id             String    @id
+//   name           String?
+//   publicKey      String
+//   userId         String
+//   user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   webauthnUserID String
+//   counter        Int
+//   deviceType     String
+//   backedUp       Boolean
+//   transports     String?
+//   createdAt      DateTime?
 
-  @@map("passkey")
-}
+//   @@map("passkey")
+// }

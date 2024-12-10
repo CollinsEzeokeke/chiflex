@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useEffect, useState } from "react";
 import { Loader2, Key } from "lucide-react";
-import { authClient, signIn } from "@/lib/auth-client";
+import { authClient, signIn } from "@/lib/auth-Client";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
