@@ -190,11 +190,11 @@ export function SignInContent() {
             <p className="text-center text-xs text-neutral-500">
               Powered by{" "}
               <Link
-                href="https://better-auth.com"
+                href="https://x.com/FattrickCollins"
                 className="underline"
                 target="_blank"
               >
-                <span className="dark:text-orange-200/90">better-auth.</span>
+                <span className="dark:text-orange-200/90">Fat-end Developer</span>
               </Link>
             </p>
           </div>
