@@ -185,10 +185,18 @@ export function SignInContent() {
             </div>
           </div>
         </CardContent>
-        <CardFooter>
+        <CardFooter className="flex flex-col gap-4">
+          <div className="flex items-center justify-center w-full">
+            <p className="text-sm text-neutral-500">
+              Don&apos;t have an account?{" "}
+              <Link href="/sign-up" className="text-primary underline">
+                Sign up
+              </Link>
+            </p>
+          </div>
           <div className="flex justify-center w-full border-t py-4">
             <p className="text-center text-xs text-neutral-500">
-              Powered by{" "}
+              Made with 💓 by{" "}
               <Link
                 href="https://x.com/FattrickCollins"
                 className="underline"
