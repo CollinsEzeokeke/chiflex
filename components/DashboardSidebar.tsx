@@ -37,71 +37,71 @@ import NotificationsBar from './NotificationsBar';
 import NavigationMenu from './NavigationMenu';
 import PurchaseHistory from '@/components/purchaseHistory';
 import BasicDashboard from '@/components/BasicDashboard';
-import Header from './landingPageComponent/header';
 
 type ComponentReference = {
-    component: React.ComponentType;
-    loading?: React.ComponentType;
-  };
+  component: React.ComponentType;
+  loading?: React.ComponentType;
+};
 
-  type MenuItem = {
-    title: string;
-    icon: LucideIcon;
-    path: string;
-    component: ComponentReference;
-  }
+type MenuItem = {
+  title: string;
+  icon: LucideIcon;
+  path: string;
+  component: ComponentReference;
+}
 
-  type Company = {
-    title: string;
-    icon: LucideIcon;
-    path: string;
-  }
+type Company = {
+  title: string;
+  icon: LucideIcon;
+  path: string;
+}
 
-  type MenuItems = {
-    basic: MenuItem[];
-    company: Company[];
-    admin: Company[];
-  }
+type MenuItems = {
+  basic: MenuItem[];
+  company: Company[];
+  admin: Company[];
+}
+
 
 const DashboardSidebar = () => {
   const router = useRouter();
-  // const pathname = usePathname();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [notifications] = useState([
     { id: 1, message: "Your order #123 is out for delivery", isNew: true },
     { id: 2, message: "New items in your wishlist are on sale", isNew: true },
   ]);
   
-//   const ContentWrapper = ({ path }: { path: string }) => {
-//     const renderContent = () => {
-//       switch (path) {
-//         case '/dashboard':
-//           return <BasicDashboard />;
-//         case '/dashboard/purchases':
-//           return <PurchaseHistory />;
-//         // case '/dashboard/rewards':
-//         //   return <Rewards />;
-//         // case '/dashboard/company':
-//         //   return <CompanyOverview />;
-//         // case '/dashboard/products':
-//         //   return <Products />;
-//         // case '/dashboard/analytics':
-//         //   return <Analytics />;
-//         // case '/dashboard/users':
-//         //   return <Users />;
-//         // case '/dashboard/settings':
-//         //   return <Settings />;
-//         default:
-//           return <div>Page not found</div>;
-//       }
+  const ContentWrapper = ({ path }: { path: string }) => {
+    const renderContent = () => {
+      switch (path) {
+        case '/dashboard':
+          return <BasicDashboard />;
+        case '/dashboard/purchases':
+          return <PurchaseHistory />;
+        // case '/dashboard/rewards':
+        //   return <Rewards />;
+        // case '/dashboard/company':
+        //   return <CompanyOverview />;
+        // case '/dashboard/products':
+        //   return <Products />;
+        // case '/dashboard/analytics':
+        //   return <Analytics />;
+        // case '/dashboard/users':
+        //   return <Users />;
+        // case '/dashboard/settings':
+        //   return <Settings />;
+        default:
+          return <div>Page not found</div>;
+      }
 
-//       return (
-//         <Suspense fallback={<div>Loading...</div>}>
-//           {renderContent()}
-//         </Suspense>
-//       );
-//     };
-// }
+      return (
+        <Suspense fallback={<div>Loading...</div>}>
+          {renderContent()}
+        </Suspense>
+      );
+    };
+}
 
   // Mock user data - in real app, this would come from auth context
   const userRole: UserRole = 'basic';
@@ -156,10 +156,10 @@ const DashboardSidebar = () => {
 
   const currentMenuItems = getCurrentMenuItems(userRole);
 
-  // const handleNavigation = (path: string) => {
-  //   // setCurrentPath(path); // Add state for current path
-  //   setIsOpen(false);
-  // };
+  const handleNavigation = (path: string) => {
+    // setCurrentPath(path); // Add state for current path
+    setIsOpen(false);
+  };
 
   const handleLogout = async () => {
     // Add your logout logic here
@@ -206,7 +206,26 @@ const DashboardSidebar = () => {
         <Sidebar>
           <SidebarContent>
             <div className="p-4 flex items-center justify-between">
-              {/* <h1 className="text-xl font-bold text-primary">E-Commerce</h1> */}
+              <h1 className="text-xl font-bold text-primary">E-Commerce</h1>
+              
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  {currentMenuItems.map((item) => (
+                    <DropdownMenuItem
+                      key={item.path}
+                      onClick={() => handleNavigation(item.path)}
+                    >
+                      <item.icon className="mr-2 h-4 w-4" />
+                      <span>{item.title}</span>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
 
             <UserProfile 
