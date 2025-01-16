@@ -1,3 +1,5 @@
+'use client'
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Activity, Clock, Zap, BarChart3 } from "lucide-react";
