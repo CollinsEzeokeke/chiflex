@@ -50,10 +50,21 @@ type ComponentReference = {
     component: ComponentReference;
   }
 
+  type Company = {
+    title: string;
+    icon: LucideIcon;
+    path: string;
+  }
+
+  type MenuItems = {
+    basic: MenuItem[];
+    company: Company[];
+    admin: Company[];
+  }
 
 const DashboardSidebar = () => {
   const router = useRouter();
-  const pathname = usePathname();
+  // const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [notifications] = useState([
     { id: 1, message: "Your order #123 is out for delivery", isNew: true },
@@ -145,7 +156,7 @@ const DashboardSidebar = () => {
   const currentMenuItems = getCurrentMenuItems(userRole);
 
   const handleNavigation = (path: string) => {
-    setCurrentPath(path); // Add state for current path
+    // setCurrentPath(path); // Add state for current path
     setIsOpen(false);
   };
 
