@@ -119,13 +119,18 @@
 //   )
 // }
 
-import BasicDashboard from "@/components/BasicDashboard";
-import DashboardLayout from "@/components/DashboardLayout";
+// import BasicDashboard from "@/components/BasicDashboard";
+// import DashboardLayout from "@/components/DashboardLayout";
+// import Header from "@/components/landingPageComponent/header";
 
 export default function Dashboard() {
   return (
+    <>
+    {/* <Header />
     <DashboardLayout>
       <BasicDashboard />
-    </DashboardLayout>
+    </DashboardLayout> */}
+    <>HELLO WORLD THIS IS THE DASHBOARD</>
+    </>
   );
 }
