@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Activity, Clock, Zap, BarChart3 } from "lucide-react";
-import PurchaseHistory from "@/components/PurchaseHistory";
+import PurchaseHistory from "@/components/purchaseHistory";
 
 const BasicDashboard = () => {
   // Mock data - in a real app this would come from an API

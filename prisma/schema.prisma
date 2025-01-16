@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,31 +8,22 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-enum UserRole {
-  BASIC_USER
-  COMPANY
-  ADMIN
-}
-
 model User {
   id            String    @id
   name          String
-  username      String?
-  email         String
+  email         String    @unique
   emailVerified Boolean   @default(false)
   image         String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  username      String?   @unique
   Bio           String?
   UserType      UserRole  @default(BASIC_USER)
-  //Relations
-  sessions Session[]
-  accounts Account[]
-  passkeys Passkey[]
+  accounts      Account[]
+  passkeys      Passkey[]
+  sessions      Session[]
 
-  @@unique([email])
   @@map("user")
-  @@unique([username])
 }
 
 model Session {
@@ -55,7 +45,6 @@ model Account {
   accountId             String
   providerId            String
   userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   accessToken           String?
   refreshToken          String?
   idToken               String?
@@ -63,9 +52,10 @@ model Account {
   refreshTokenExpiresAt DateTime?
   scope                 String?
   password              String?
-  expiresAt             DateTime?
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
+  expiresAt             DateTime?
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("account")
 }
@@ -86,13 +76,19 @@ model Passkey {
   name           String?
   publicKey      String
   userId         String
-  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   webauthnUserID String
   counter        Int
   deviceType     String
   backedUp       Boolean
   transports     String?
   createdAt      DateTime?
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("passkey")
+}
+
+enum UserRole {
+  BASIC_USER
+  COMPANY
+  ADMIN
 }
