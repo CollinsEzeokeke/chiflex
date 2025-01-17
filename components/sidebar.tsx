@@ -1,5 +1,5 @@
 'use client';
-
+// integrate dashboard render to be changed based off on what is clicked here or not 
 import {
     Sidebar as SidebarContainer,
     SidebarContent,
