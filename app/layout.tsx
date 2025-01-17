@@ -6,6 +6,7 @@ import TanStackProvider from "@/providers/TanStackProvider";
 import Providers from "@/components/providers";
 import { Toaster as Sonner } from '@/components/ui/sonner';
 import Toaster from "@/components/ui/toaster";
+import { TooltipProvider } from "@radix-ui/react-tooltip";
 
 export const metadata: Metadata = {
   title: "Chiflex",
@@ -24,14 +25,15 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="scroll-smooth">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <TanStackProvider>
-            <Providers>{children}</Providers>
-            <Toaster />
-            <Sonner />
-          </TanStackProvider>
+          <TooltipProvider>
+            <TanStackProvider>
+              <Providers>{children}</Providers>
+              <Toaster />
+              <Sonner />
+            </TanStackProvider>
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
   );
 }
-// postgresql://postgres:Collins0-0-2ert45m@db.fnrmxdnbpalnvtffzgmx.supabase.co:5432/postgres

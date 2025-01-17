@@ -9,7 +9,7 @@ import Link from "next/link";
 import { motion, AnimatePresence, px } from "framer-motion";
 import { ChevronDown, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import SearchPopUp from "@/components/searchPopUp";
+// import SearchPopUp from "@/components/searchPopUp";
 import Image from "next/image";
 import { DropDownMenu } from "../dropDown";
 
@@ -128,14 +128,14 @@ const Header: React.FC = () => {
   return (
     <>
       {isMobile ? (
-        <header className="h-14 items-center flex overflow-hidden justify-between">
-          <Link href="/" prefetch={false} className="left-1 relative">
+        <header className="h-14 w-full px-4 flex items-center justify-between">
+          <Link href="/" prefetch={false} className="flex items-center">
             <FootprintsIcon />
             <span className="sr-only">Footwear Co.</span>
           </Link>
 
-          <div className="flex text-sm justify-between items-center w-[5%]">
-            <User className="text-lg text-red-500" />
+          <div className="flex items-center gap-3">
+            <User className="text-lg" />
             <DropDownMenu />
           </div>
         </header>
