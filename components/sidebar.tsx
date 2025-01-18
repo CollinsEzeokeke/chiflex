@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Home, ShoppingBag, Settings, User, Heart, Package, LucideIcon } from "lucide-react";
 import NotificationBell from "./Notifications";
+import { useStoreNav } from "@/hooks/store/store";
 
 interface MenuItem {
     icon: LucideIcon | typeof NotificationBell;
@@ -45,6 +46,7 @@ const userProfile: UserProfile = {
 };
 
 export default function Sidebar() {
+    const {setNavigation} = useStoreNav()
     return (
         <SidebarContainer>
             <SidebarContent>
@@ -65,12 +67,12 @@ export default function Sidebar() {
                                 <SidebarMenuItem key={item.label}>
                                     <SidebarMenuButton asChild>
                                         {item.component ? (
-                                            <button className="flex items-center gap-3 px-4 py-2">
+                                            <button className="flex items-center gap-3 px-4 py-2" onClick={() => {setNavigation(item.label.toLocaleLowerCase())}}>
                                                 <item.icon />
                                                 <span>{item.label}</span>
                                             </button>
                                         ) : (
-                                            <button className="flex items-center gap-3 px-4 py-2" onClick={() => { console.log('you clicked me', item.href) }}>
+                                            <button className="flex items-center gap-3 px-4 py-2" onClick={() => {setNavigation(item.href) }}>
                                                 <item.icon className="h-4 w-4 dark:bg-inherit" />
                                                 <span>{item.label}</span>
                                             </button>
